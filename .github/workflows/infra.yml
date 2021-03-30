@@ -48,6 +48,7 @@ on:
   push:
     branches:
     - master
+    - infra
   pull_request:
 
 jobs:
