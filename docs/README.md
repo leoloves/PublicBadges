@@ -53,3 +53,9 @@ and backend development
 [Alain Otjens](https://github.com/alain0): UI/UX design and frontend development
 
 [Sander van der Waal](https://github.com/sandervdwaal): community management
+
+## TODO
+
+- [x] Create Github Organization
+- [x] Install Doc Tool
+- [ ] Update Documentation
