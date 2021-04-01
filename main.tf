@@ -1,10 +1,5 @@
-variable "TFC_WORKSPACE_NAME" {
-  type = string
-  default = "dev"
-}
-
 locals {
- workspace = var.TFC_WORKSPACE_NAME != "" ? trimprefix(var.TFC_WORKSPACE_NAME, "public-badges-") : terraform.workspace
+ workspace = trimprefix(terraform.workspace, "public-badges-") 
 }
 
 terraform {
