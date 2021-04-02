@@ -35,3 +35,9 @@ module "public-spaces-registry" {
   environment_name = local.environment_name
   project_prefix   = "public-badges"
 }
+
+module "public-spaces-badges" {
+  source           = "./infra/badges"
+  environment_name = local.environment_name
+  project_prefix   = "public-badges"
+}
