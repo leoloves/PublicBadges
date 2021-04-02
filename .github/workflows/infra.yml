@@ -52,11 +52,11 @@ on:
   pull_request:
 
 jobs:
-  env:
-    TF_WORKSPACE: 'dev'
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
+    env:
+      TF_WORKSPACE: 'dev'
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
