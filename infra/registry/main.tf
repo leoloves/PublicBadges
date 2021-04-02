@@ -8,9 +8,9 @@ variable "project_prefix" {
 
 locals {
   environment_suffix = title(var.environment_name)
-  bucket = "${var.project_prefix}Registry${local.environment_suffix}"
-  lookup_table = "RegistryLookUp${local.environment_suffix}"
-  organization_status_index = "OrganizationStatus${local.environment_suffix}"
+  bucket = "${var.project_prefix}-registry-${var.environment_name}"
+  lookup_table = "${var.project_prefix}-registry-lookup-${var.environment_name}"
+  organization_status_index ="${var.project_prefix}-organization-status-${var.environment_name}"
 }
 resource "aws_dynamodb_table" "lookup_table" {
   name           = local.lookup_table
@@ -79,7 +79,7 @@ resource "aws_ssm_parameter" "registry_bucket_name" {
 }
 
 resource "aws_ssm_parameter" "organization_status_index_name" {
-  name        = "/${var.environment_name}/registry/indices/organizationStatus"
+  name        = "/${var.environment_name}/registry/indices/organization_status"
   type        = "SecureString"
   value       = local.organization_status_index
 }

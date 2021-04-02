@@ -33,6 +33,6 @@ provider "aws" {
 module "public-spaces-registry" {
   source           = "./infra/registry"
   environment_name = local.environment_name
-  project_prefix   = "PublicBadges"
+  project_prefix   = "public-badges"
 }
 
