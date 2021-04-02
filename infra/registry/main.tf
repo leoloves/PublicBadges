@@ -54,7 +54,7 @@ resource "aws_dynamodb_table" "lookup_table" {
   }
 }
 
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "registry_bucket" {
   bucket = local.bucket
   acl    = "private"
 
