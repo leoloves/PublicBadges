@@ -52,6 +52,8 @@ on:
   pull_request:
 
 jobs:
+  env:
+    TF_WORKSPACE: 'dev'
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
