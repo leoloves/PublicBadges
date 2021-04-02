@@ -4,7 +4,7 @@ variable "TFC_WORKSPACE_NAME" {
 }
 
 locals {
-  workspace = var.TFC_WORKSPACE_NAME != "" ? trimprefix(var.TFC_WORKSPACE_NAME, "public-badges-") : terraform.workspace
+  environment_name = var.TFC_WORKSPACE_NAME != "" ? trimprefix(var.TFC_WORKSPACE_NAME, "public-badges-") : terraform.workspace
 }
 
 terraform {
@@ -29,45 +29,9 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-resource "aws_dynamodb_table" "basic-dynamodb-table" {
-  name           = "RegistryTable${title(local.workspace)}"
-  hash_key       = "identityKey"
-  range_key      = "identityType"
-  read_capacity  = 1
-  write_capacity = 1
 
-  attribute {
-    name = "organizationId"
-    type = "S"
-  }
-
-  attribute {
-    name = "identityKey"
-    type = "S"
-  }
-
-  attribute {
-    name = "identityType"
-    type = "S"
-  }
-
-  attribute {
-    name = "approvalStatus"
-    type = "S"
-  }
-
-  global_secondary_index {
-    name               = "OrganizationStatus${title(local.workspace)}"
-    hash_key           = "approvalStatus"
-    range_key          = "organizationId"
-    write_capacity     = 1
-    read_capacity      = 1
-    projection_type    = "KEYS_ONLY"
-    non_key_attributes = []
-  }
-
-  tags = {
-    Environment = local.workspace
-  }
+module "public-spaces-registry" {
+  source           = "./infra/registry"
+  environment_name = local.environment_name
 }
 
