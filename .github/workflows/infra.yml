@@ -57,6 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TF_WORKSPACE: 'dev'
+      TFC_WORKSPACE_NAME: 'dev'
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
