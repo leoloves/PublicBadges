@@ -8,7 +8,7 @@ variable "project_prefix" {
 
 locals {
   environment_suffix = title(var.environment_name)
-  bucket = "${var.project_prefix}registry-${local.environment_suffix}"
+  bucket = "${var.project_prefix}Registry${local.environment_suffix}"
   lookup_table = "RegistryLookUp${local.environment_suffix}"
   organization_status_index = "OrganizationStatus${local.environment_suffix}"
 }
