@@ -56,8 +56,8 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     env:
-      TF_WORKSPACE: 'dev'
-      TFC_WORKSPACE_NAME: 'dev'
+      TF_WORKSPACE: ${{env.WORKSPACE}}
+      TFC_WORKSPACE_NAME: ${{env.WORKSPACE}}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
