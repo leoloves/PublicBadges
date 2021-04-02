@@ -66,10 +66,16 @@ resource "aws_s3_bucket" "bucket" {
   }
 }
 
-resource "aws_ssm_parameter" "registry_name" {
+resource "aws_ssm_parameter" "registry_lookup_table_name" {
   name        = "/${var.environment_name}/registry/lookup_table"
   type        = "SecureString"
   value       = local.lookup_table
+}
+
+resource "aws_ssm_parameter" "registry_bucket_name" {
+  name        = "/${var.environment_name}/registry/bucket"
+  type        = "SecureString"
+  value       = local.bucket
 }
 
 resource "aws_ssm_parameter" "organization_status_index_name" {
