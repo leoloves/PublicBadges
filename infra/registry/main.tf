@@ -4,9 +4,11 @@ variable "environment_name" {
 
 locals {
   environment_suffix = title(var.environment_name)
+  name = "RegistryTable${local.environment_suffix}"
+  organization_status_index_name = "OrganizationStatus${local.environment_suffix}"
 }
 resource "aws_dynamodb_table" "basic-dynamodb-table" {
-  name           = "RegistryTable${local.environment_suffix}"
+  name           = local.name
   hash_key       = "identityKey"
   range_key      = "identityType"
   read_capacity  = 1
@@ -33,7 +35,7 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
   }
 
   global_secondary_index {
-    name               = "OrganizationStatus${local.environment_suffix}"
+    name               = local.organization_status_index_name
     hash_key           = "approvalStatus"
     range_key          = "organizationId"
     write_capacity     = 1
@@ -47,3 +49,14 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
   }
 }
 
+resource "aws_ssm_parameter" "registry_name" {
+  name        = "${var.environment_name}/registry/name"
+  type        = "SecureString"
+  value       = local.name
+}
+
+resource "aws_ssm_parameter" "organization_status_index_name" {
+  name        = "${var.environment_name}/registry/indices/organizationStatus"
+  type        = "SecureString"
+  value       = local.organization_status_index_name
+}
