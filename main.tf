@@ -1,5 +1,5 @@
 locals {
- workspace = trimprefix(terraform.workspace, "public-badges-") 
+  workspace = trimprefix(terraform.workspace, "public-badges-")
 }
 
 terraform {
@@ -28,7 +28,7 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
   name           = "RegistryTable${title(local.workspace)}"
   hash_key       = "identityKey"
   range_key      = "identityType"
-  read_capacity  = 1 
+  read_capacity  = 1
   write_capacity = 1
 
   attribute {
