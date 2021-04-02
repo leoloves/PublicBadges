@@ -35,4 +35,3 @@ module "public-spaces-registry" {
   environment_name = local.environment_name
   project_prefix   = "public-badges"
 }
-

@@ -9,6 +9,7 @@ variable "project_prefix" {
 locals {
   environment_suffix = title(var.environment_name)
   bucket = "${var.project_prefix}-registry-bucket-${var.environment_name}"
+  event_bus = "${var.project_prefix}-registry-event-bus-${var.environment_name}"
   lookup_table = "${var.project_prefix}-registry-lookup-table-${var.environment_name}"
   organization_status_index ="${var.project_prefix}-organization-status-index-${var.environment_name}"
 }
@@ -64,6 +65,19 @@ resource "aws_s3_bucket" "registry_bucket" {
   tags = {
     Environment = var.environment_name
   }
+}
+
+resource "aws_cloudwatch_event_bus" "registry_event_bus" {
+  name = local.event_bus
+  tags = {
+    Environment = var.environment_name
+  }
+}
+
+resource "aws_ssm_parameter" "registry_event_bus" {
+  name        = "/${var.environment_name}/registry/event_bus"
+  type        = "SecureString"
+  value       = local.event_bus
 }
 
 resource "aws_ssm_parameter" "registry_lookup_table_name" {
