@@ -50,13 +50,13 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
 }
 
 resource "aws_ssm_parameter" "registry_name" {
-  name        = "${var.environment_name}/registry/name"
+  name        = "/${var.environment_name}/registry/name"
   type        = "SecureString"
   value       = local.name
 }
 
 resource "aws_ssm_parameter" "organization_status_index_name" {
-  name        = "${var.environment_name}/registry/indices/organizationStatus"
+  name        = "/${var.environment_name}/registry/indices/organizationStatus"
   type        = "SecureString"
   value       = local.organization_status_index_name
 }
