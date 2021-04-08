@@ -46,3 +46,7 @@ output "read_registry_bucket_policy" {
 output "write_registry_event_bus_policy" {
   value = aws_iam_policy.registry_event_bus_write_access.arn
 }
+
+output "read_registry_lookup_table_policy" {
+  value = aws_iam_policy.registry_lookup_table_read_access.arn
+}

@@ -2,9 +2,9 @@ service: public-badges-api
 variablesResolutionMode: 20210326
 
 custom:
-  registry_bucket: public-badges-registry-${opt:stage}
-  registry_lookup_table: registry-lookup-${opt:stage}
-  organization-status-index: organization-status-${opt:stage}
+  registry_bucket: ${ssm:/${opt:stage}/registry/bucket}
+  registry_lookup: ${ssm:/${opt:stage}/registry/lookup_table}
+  organization-status-index: ${ssm:/${opt:stage}/registry/indices/organization_status}
   graphql: public-badges.graphql-${opt:stage}
 
 provider:
@@ -17,19 +17,6 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - s3:ListBucket
-            - s3:GetObject
-            - s3:PutObject
-            - s3:PutObjectAcl
-          Resource:
-            - "arn:aws:s3:::${self:custom.registry_bucket}"
-            - "arn:aws:s3:::${self:custom.registry_bucket}/*"
-        - Effect: Allow
-          Action:
-            - events:PutEvents
-          Resource: "*"
-        - Effect: Allow
-          Action:
             - dynamodb:Query
             - dynamodb:Scan
             - dynamodb:GetItem
@@ -37,8 +24,8 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource:
-            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup_table}"
-            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup_table}/index/*"
+            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup}"
+            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup}/index/*"
 
 functions:
   graphql:
