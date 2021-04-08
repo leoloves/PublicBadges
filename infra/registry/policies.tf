@@ -16,14 +16,8 @@ resource "aws_iam_policy" "registry_event_bus_write_access" {
   policy = data.aws_iam_policy_document.registry_event_bus_write_access.json
 }
 
-resource "aws_iam_policy" "registry_lookup_table_read_access" {
-  name = "${local.lookup_table}-read-access-policy"
+resource "aws_iam_policy" "registry_lookup_table_access" {
+  name = "${local.lookup_table}-access-policy"
   path   = "/"
-  policy = data.aws_iam_policy_document.registry_lookup_table_read_access.json
-}
-
-resource "aws_iam_policy" "registry_lookup_table_write_access" {
-  name = "${local.lookup_table}-read-access-policy"
-  path   = "/"
-  policy = data.aws_iam_policy_document.registry_lookup_table_write_access.json
+  policy = data.aws_iam_policy_document.registry_lookup_table_access.json
 }

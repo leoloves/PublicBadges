@@ -1,27 +1,16 @@
-data "aws_iam_policy_document" "registry_lookup_table_read_access" {
+data "aws_iam_policy_document" "registry_lookup_table_access" {
   statement {
     actions = [
       "dynamodb:Query",
       "dynamodb:Scan",
-      "dynamodb:GetItem"
-    ]
-
-    resources = [
-     aws_dynamodb_table.lookup_table.arn
-    ]
-  }
-}
-
-data "aws_iam_policy_document" "registry_lookup_table_write_access" {
-  statement {
-    actions = [
+      "dynamodb:GetItem",
       "dynamodb:PutItem",
       "dynamodb:UpdateItem",
       "dynamodb:DeleteItem"
     ]
 
     resources = [
-     aws_dynamodb_table.lookup_table.arn
+     aws_dynamodb_table.lookup_table.arn,
     ]
   }
 }
