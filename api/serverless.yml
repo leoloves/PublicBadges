@@ -48,5 +48,5 @@ functions:
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       HANDLER_NAME: ${self:custom.graphql}
-      REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup_table}
+      REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup}
       ORGANIZATION_STATUS_INDEX: ${self:custom.organization-status-index}
