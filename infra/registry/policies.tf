@@ -33,7 +33,7 @@ resource "aws_iam_policy" "registry_bucket_read_access" {
 }
 
 resource "aws_iam_policy" "registry_bucket_write_access" {
-  name = "${local.bucket}-read-access-policy-${var.environment_name}"
+  name = "${local.bucket}-write-access-policy-${var.environment_name}"
   path   = "/"
   policy = data.aws_iam_policy_document.registry_bucket_write_access.json
 }
