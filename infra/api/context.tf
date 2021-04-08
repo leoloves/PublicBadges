@@ -2,8 +2,8 @@ variable "environment_name" {
   type = string
 }
 
-variable "read_registry_policy" {
-  type = string
+variable "policies" {
+  type = list
 }
 
 variable "project_prefix" {

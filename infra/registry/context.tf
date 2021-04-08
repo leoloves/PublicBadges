@@ -39,6 +39,10 @@ resource "aws_ssm_parameter" "organization_status_index_name" {
   value       = local.organization_status_index
 }
 
-output "read_registry_policy" {
-  value = aws_iam_policy.registry_bucket_write_access.arn
+output "read_registry_bucket_policy" {
+  value = aws_iam_policy.registry_bucket_read_access.arn
+}
+
+output "write_registry_event_bus_policy" {
+  value = aws_iam_policy.registry_event_bus_write_access.arn
 }
