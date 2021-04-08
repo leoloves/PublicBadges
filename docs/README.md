@@ -54,6 +54,21 @@ and backend development
 
 [Sander van der Waal](https://github.com/sandervdwaal): community management
 
+## Contributing
+
+In order to work on this project, you need to have the following tools
+installed:
+
+- Terraform (https://www.terraform.io/downloads.html)
+
+- NodeJS (https://nodejs.org/en/)
+
+After you made sure that you meet these requirements, run this command:
+
+```bash
+npm install && npm run prepare
+```
+
 ## TODO
 
 - [x] Create Github Organization

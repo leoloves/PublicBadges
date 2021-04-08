@@ -1,0 +1,65 @@
+service: public-badges-api
+variablesResolutionMode: 20210326
+
+custom:
+  registry_bucket: public-badges-registry-${opt:stage}
+  registry_lookup_table: registry-lookup-${opt:stage}
+  organization-status-index: organization-status-${opt:stage}
+  graphql: public-badges.graphql-${opt:stage}
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-1
+  lambdaHashingVersion: 20201221
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:ListBucket
+            - s3:GetObject
+            - s3:PutObject
+            - s3:PutObjectAcl
+          Resource:
+            - "arn:aws:s3:::${self:custom.registry_bucket}"
+            - "arn:aws:s3:::${self:custom.registry_bucket}/*"
+        - Effect: Allow
+          Action:
+            - events:PutEvents
+          Resource: "*"
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup_table}"
+            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup_table}/index/*"
+
+functions:
+  graphql:
+    handler: dist/index.graphql
+    package:
+      individually: true
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+      - http:
+          path: graphql
+          method: get
+          cors: true
+      - http:
+          path: playground
+          method: any
+          cors: true
+    environment:
+      REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      HANDLER_NAME: ${self:custom.graphql}
+      REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup_table}
+      ORGANIZATION_STATUS_INDEX: ${self:custom.organization-status-index}

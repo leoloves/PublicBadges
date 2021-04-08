@@ -29,6 +29,13 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+module "public-spaces-api" {
+  source               = "./infra/api"
+  environment_name     = local.environment_name
+  project_prefix       = "public-badges"
+  read_registry_policy = module.public-spaces-registry.read_registry_policy
+}
+
 
 module "public-spaces-registry" {
   source           = "./infra/registry"

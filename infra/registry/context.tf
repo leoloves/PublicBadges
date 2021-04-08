@@ -38,3 +38,7 @@ resource "aws_ssm_parameter" "organization_status_index_name" {
   type        = "SecureString"
   value       = local.organization_status_index
 }
+
+output "read_registry_policy" {
+  value = aws_iam_policy.registry_bucket_write_access.arn
+}
