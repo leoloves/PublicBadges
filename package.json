@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "docs": "docsify serve docs"
+    "docs": "docsify serve docs",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,11 @@
   },
   "homepage": "https://github.com/PublicBadges/PublicBadges#readme",
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.13.5",
+    "@graphql-codegen/introspection": "^1.18.1",
+    "@graphql-codegen/typescript": "^1.19.0",
+    "@graphql-codegen/typescript-document-nodes": "^1.17.10",
+    "@graphql-codegen/typescript-resolvers": "^1.19.0",
     "docsify": "^4.11.4",
     "husky": "^6.0.0"
   }

@@ -1,0 +1,6 @@
+enum Language {
+  NL
+  EN
+  DE
+}
+

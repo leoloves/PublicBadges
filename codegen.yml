@@ -1,0 +1,25 @@
+overwrite: true
+schema: ./schema/**/*.graphql
+config:
+  useIndexSignature: true
+documents: null
+generates:
+  types/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      skipTypename: true
+      avoidOptionals: true
+      contextType: ../../api/context#ApolloContext
+      scalars:
+        EmailAddress: string
+        JSON: string
+        UUID: string
+      mappers:
+        ValueCase: ../models#ValueCaseProxy
+        PublicBadge: ../models#PublicBadgeProxy
+        OpenBadgeArtifact: ../models#OpenBadgesArtifactProxy
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

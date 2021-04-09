@@ -1,0 +1,4 @@
+type Query {
+  getAllBadges(domainName: URL!, language: Language): [PublicBadge]
+  getValueCase(valueCaseId: GUID!, language: Language): ValueCase
+}

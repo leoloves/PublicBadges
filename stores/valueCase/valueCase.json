@@ -1,0 +1,122 @@
+{
+  "valueCaseId": "88c7a930-3181-11ea-9858-b312ce22102d",
+  "image": "https://publicbadges.com/public-badges.svg",
+  "name": "Zero Badge",
+  "tags": ["manifesto", "intention"],
+  "proposedBy": "https://offcourse.io/",
+  "approvedBy": "sander@waag.org",
+  "description": "This badge is awarded to organizations that publicly display their commitment\nto the values of the PublicSpaces manifesto on their website.\n",
+  "narrative": "The Zero Badge is a way for organizations that are part of the PublicSpaces\ncoalition to show their affiliation on their website. It provides visible\nevidence to the user that the organization has the intention to implement\nthe PublicSpaces values in their online presence.\n",
+  "scenarios": [
+    {
+      "description": "Organization is listed in the PublicSpaces Registry",
+      "narrative": [
+        "Given a user visits the organizations website",
+        "And the website displays the Zero Badge",
+        "Then the organization is listed in the PublicSpaces Registry",
+        "And the Badge is valid",
+        "And the user knows that the organization subscribes to the Public Spaces manifesto"
+      ]
+    },
+    {
+      "description": "Zero Badge is publicly visible on the organization's website",
+      "narrative": [
+        "Given a user wants to know if the organization subscribes to the PublicSpaces Manifesto",
+        "And visits the organization's homepage",
+        "When the user scrolls to the footer of the page",
+        "Then the user should see the Zero Badge",
+        "And the Badge should be displayed with sufficient color contrast",
+        "And the Badge should have sufficient padding around it"
+      ]
+    },
+    {
+      "description": "Organization's website links to the PublicSpaces Manifesto",
+      "narrative": [
+        "Given a user wants to know what the PublicSpaces manifesto entails",
+        "And visits the website of an affiliated organization",
+        "When the webiste displays the Zero Badge",
+        "And the user clicks on the Badge",
+        "Then the user should be redirected to the Public Spaces manifesto"
+      ]
+    }
+  ],
+  "localization": {
+    "NL": {
+      "name": "Zero Badge",
+      "description": "Deze badge wordt toegekend aan organisaties die zich via hun website\npubliekelijk verbinden met de waarden van het PublicSpaces manifest.\n",
+      "narrative": "Met de Zero Badge laten deelnemers aan PublicSpaces hun betrokkenheid bij\nde coalitie zien via hun website. Hiermee maken ze aan hun bezoekers duidelijk\ndat ze de intentie hebben om de waarden van PublicSpaces te implementeren\nin hun online systemen.\n",
+      "tags": ["manifesto", "intentieverklaring"],
+      "scenarios": [
+        {
+          "description": "Organization staat in het PublicSpaces register",
+          "narrative": [
+            "Gegeven dat iemand de website van organization bezoekt",
+            "En de website laat de Zero Badge zien",
+            "Dan staat organization in het PublicSpaces register",
+            "En de Badge is geldig",
+            "En de bezoeker weet dat organization het manifest van PublicSpaces onderschrijft"
+          ]
+        },
+        {
+          "description": "De Zero Badge is publiekelijk zichtbaar op de website van organization",
+          "narrative": [
+            "Gegeven dat een bezoeker wil weten of organization het manifest van PublicSpaces onderschrijft",
+            "En gegeven dat zij de homepage van organization bezoekt",
+            "Wanneer de bezoeker naar de onderkant van de pagina scrollt",
+            "Dan zou de bezoeker de Zero Badge moeten zien",
+            "En de Zero Badge zou getoond moeten worden met voldoende kleur-contrast",
+            "En er zou voldoende ruimte om de Zero Badge heen moeten staan"
+          ]
+        },
+        {
+          "description": "De website van organization linkt naar het PublicSpaces manifest",
+          "narrative": [
+            "Gegeven dat een bezoeker wil weten wat het PublicSpaces manifest inhoudt",
+            "En dat deze bezoeker de website van een lid van de coalitie bezoekt",
+            "Wanneer de website de Zero Badge toont",
+            "En de gebruiker klikt op de Badge",
+            "Dan zou de gebruiker automatisch doorverwezen moeten worden naar het PublicSpaces manifest"
+          ]
+        }
+      ]
+    },
+    "DE": {
+      "name": "GENAU GENAU GENAU",
+      "tags": ["bla", "bla bla"],
+      "description": "GENAU GENAU GENAU",
+      "narrative": "GENAU GENAU GENAU",
+      "scenarios": [
+        {
+          "description": "GENAU Organization GENAU",
+          "narrative": [
+            "Organization GENAU GENAU",
+            "JA GENAU Organizations",
+            "GENAU Organization GENAU",
+            "GENAU JA JA",
+            "JA JA GENAU"
+          ]
+        },
+        {
+          "description": "GENAU GENAU Organization",
+          "narrative": [
+            "GENAU JA JA",
+            "JA JA GENAU",
+            "GENAU GENAU Organizations",
+            "GENAU GENAU GENAU",
+            "GENAU GENAU GENAU"
+          ]
+        },
+        {
+          "description": "GENAU GENAU GENAU",
+          "narrative": [
+            "Organization GENAU GENAU",
+            "GENAU GENAU Organizations",
+            "GENAU Organization GENAU",
+            "GENAU GENAU GENAU",
+            "JA JA JA"
+          ]
+        }
+      ]
+    }
+  }
+}

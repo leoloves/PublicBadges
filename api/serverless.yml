@@ -19,7 +19,7 @@ provider:
 
 functions:
   graphql:
-    handler: dist/index.graphql
+    handler: handler.graphql
     package:
       individually: true
     events:

@@ -1,0 +1,38 @@
+type Scenario {
+  description: String!
+  narrative: [String!]!
+}
+
+type ValueCaseLocalization {
+  name: String!
+  tags: [String]!
+  description: String!
+  narrative: String!
+  scenarios: [Scenario!]!
+}
+
+type Localization {
+  NL: ValueCaseLocalization
+  DE: ValueCaseLocalization
+}
+
+type ValueCase {
+  valueCaseId: GUID!
+  image: URL!
+  name: String!
+  tags: [String]!
+  proposedBy: Organization!
+  approvedBy: String!
+  description: String!
+  narrative: String!
+  scenarios: [Scenario!]!
+  localization: Localization
+}
+
+input ValueCaseInput {
+  domainName: URL!
+  name: String!
+  tags: [String]!
+  narrative: String!
+  description: String!
+}
