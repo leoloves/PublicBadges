@@ -2,10 +2,12 @@ service: public-badges-api
 variablesResolutionMode: 20210326
 
 custom:
-  registry_bucket: ${ssm:/${opt:stage}/registry/bucket}
-  registry_lookup: ${ssm:/${opt:stage}/registry/lookup_table}
-  organization-status-index: ${ssm:/${opt:stage}/registry/indices/organization_status}
-  graphql: public-badges.graphql-${opt:stage}
+  parameter_prefix: public-badges/${opt:stage}
+  registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
+  registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
+  organization-status-index: ${ssm:/${self:custom.parameter_prefix}/registry/indices/organization_status}
+  role: ${ssm:/${self:custom.parameter_prefix}/api/role}
+  graphql: public-badges-${opt:stage}-graphql
 
 provider:
   name: aws
@@ -13,19 +15,7 @@ provider:
   region: eu-west-1
   lambdaHashingVersion: 20201221
   iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - dynamodb:Query
-            - dynamodb:Scan
-            - dynamodb:GetItem
-            - dynamodb:PutItem
-            - dynamodb:UpdateItem
-            - dynamodb:DeleteItem
-          Resource:
-            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup}"
-            - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.registry_lookup}/index/*"
+    role: ${self:custom.role}
 
 functions:
   graphql:

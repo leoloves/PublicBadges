@@ -13,14 +13,6 @@ locals {
   parameter_prefix="/${var.project_prefix}/${var.environment_name}/${local.name}"
 }
 
-resource "aws_ssm_parameter" "event_bus" {
-  name        = "${local.parameter_prefix}/event_bus"
-  type        = "SecureString"
-  value       = local.event_bus
-}
-
-resource "aws_ssm_parameter" "bucket_name" {
-  name        = "${local.parameter_prefix}/bucket"
-  type        = "SecureString"
-  value       = local.bucket
+output "write_badges_event_bus_policy" {
+  value = aws_iam_policy.badges_event_bus_write_access.arn
 }
