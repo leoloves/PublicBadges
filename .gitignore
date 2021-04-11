@@ -141,3 +141,5 @@ override.tf.json
 .terraformrc
 terraform.rco
 .terraform.lock.hcl
+
+/dist

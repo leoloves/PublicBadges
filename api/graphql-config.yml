@@ -1,0 +1,58 @@
+handler: dist/api/handler.graphql
+package:
+  individually: true
+  patterns:
+    - "!node_modules"
+    - "!dist/assets"
+    - node_modules/@josephg/**/*
+    - node_modules/@graphql-tools/**/*
+    - node_modules/apollo-cache-control/**/*
+    - node_modules/apollo-datasource/**/*
+    - node_modules/apollo-env/**/*
+    - node_modules/apollo-graphql/**/*
+    - node_modules/apollo-link/**/*
+    - node_modules/apollo-tracing/**/*
+    - node_modules/apollo-utilities/**/*
+    - node_modules/apollo-server-caching/**/*
+    - node_modules/apollo-server-core/**/*
+    - node_modules/apollo-server-env/**/*
+    - node_modules/apollo-server-errors/**/*
+    - node_modules/apollo-server-lambda/**/*
+    - node_modules/apollo-server-plugin-base/**/*
+    - node_modules/apollo-server-types/**/*
+    - node_modules/deprecated-decorator/**/*
+    - node_modules/fast-json-stable-stringify/**/*
+    - node_modules/graphql/**/*
+    - node_modules/graphql-tag/**/*
+    - node_modules/graphql-extensions/**/*
+    - node_modules/graphql-import-node/**/*
+    - node_modules/lru-cache/**/*
+    - node_modules/node-fetch/**/*
+    - node_modules/graphql-playground-middleware-lambda/**/*
+    - node_modules/graphql-scalars/**/*
+    - node_modules/graphql-tools/**/*
+    - node_modules/uuid/**/*
+    - node_modules/voca/**/*
+    - node_modules/ramda/**/*
+    - node_modules/ts-invariant/**/*
+    - node_modules/yallist/**/*
+    - node_modules/zen-observable/**/*
+    - node_modules/zen-observable-ts/**/*
+events:
+  - http:
+      path: graphql
+      method: post
+      cors: true
+  - http:
+      path: graphql
+      method: get
+      cors: true
+  - http:
+      path: playground
+      method: any
+      cors: true
+environment:
+  REGISTRY_BUCKET: ${self:custom.registry_bucket}
+  HANDLER_NAME: ${self:custom.graphql}
+  REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup}
+  ORGANIZATION_STATUS_INDEX: ${self:custom.organization-status-index}

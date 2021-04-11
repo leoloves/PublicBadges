@@ -1,20 +1,19 @@
 service: public-badges-api
 variablesResolutionMode: 20210326
 
-package:
-  exclude:
-    - node_modules
-    - dist/assets
-  include:
-    - node_modules/apollo-server-lambda/**/*
-    - node_modules/graphql/**/*
-    - node_modules/graphql-import-node/**/*
-    - node_modules/graphql-playground-middleware-lambda/**/*
-    - node_modules/graphql-scalars/**/*
-    - node_modules/graphql-tools/**/*
-    - node_modules/uuid/**/*
-    - node_modules/voca/**/*
-    - node_modules/ramda/**/*
+exclude:
+  - node_modules
+  - dist/assets
+include:
+  - node_modules/apollo-server-lambda/**/*
+  - node_modules/graphql/**/*
+  - node_modules/graphql-import-node/**/*
+  - node_modules/graphql-playground-middleware-lambda/**/*
+  - node_modules/graphql-scalars/**/*
+  - node_modules/graphql-tools/**/*
+  - node_modules/uuid/**/*
+  - node_modules/voca/**/*
+  - node_modules/ramda/**/*
 
 custom:
   parameter_prefix: public-badges/${opt:stage}
@@ -34,7 +33,7 @@ provider:
 
 functions:
   graphql:
-    handler: dist/handler.graphql
+    handler: ../dist/api/handler.graphql
     events:
       - http:
           path: graphql
