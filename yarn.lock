@@ -854,13 +854,13 @@
     tslib "~2.0.1"
 
 "@graphql-tools/utils@^7.0.0", "@graphql-tools/utils@^7.1.0", "@graphql-tools/utils@^7.1.2", "@graphql-tools/utils@^7.1.5", "@graphql-tools/utils@^7.2.1", "@graphql-tools/utils@^7.5.0", "@graphql-tools/utils@^7.7.0", "@graphql-tools/utils@^7.7.1":
-  version "7.7.1"
-  resolved "https://registry.npmjs.org/@graphql-tools/utils/-/utils-7.7.1.tgz#81f32cb4819b34b3a378d51ab2cd60935977f0b4"
-  integrity sha512-SFT4/dTfrwWer1wSOLU+jqgv3oa/xTR8q+MiNbE9nCH2FXyMsqIOaXKm9wHfKIWFWHozqBdcnwFkQZrdD7H2TQ==
+  version "7.7.2"
+  resolved "https://registry.npmjs.org/@graphql-tools/utils/-/utils-7.7.2.tgz#3d3a7cd97821339cf364591dec0b50a92e5da0ee"
+  integrity sha512-whR/2gAt76njm0x7nLdTs3GG9uSSU9bx7oVurVGWgfEbhYuDaVRVsvfMhx9T1Zz9ICcmGMwzBquc1ng9mlG/WA==
   dependencies:
     "@ardatan/aggregate-error" "0.0.6"
     camel-case "4.1.2"
-    tslib "~2.1.0"
+    tslib "~2.2.0"
 
 "@graphql-tools/wrap@^7.0.4":
   version "7.0.5"
@@ -1568,15 +1568,15 @@ braces@^3.0.1, braces@~3.0.2:
     fill-range "^7.0.1"
 
 browserslist@^4.14.5:
-  version "4.16.3"
-  resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.16.3.tgz#340aa46940d7db878748567c5dea24a48ddf3717"
-  integrity sha512-vIyhWmIkULaq04Gt93txdh+j02yX/JzlyhLYbV3YQCn/zvES3JnY7TifHHvvr1w5hTDluNKMkV05cs4vy8Q7sw==
+  version "4.16.4"
+  resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.16.4.tgz#7ebf913487f40caf4637b892b268069951c35d58"
+  integrity sha512-d7rCxYV8I9kj41RH8UKYnvDYCRENUlHRgyXy/Rhr/1BaeLGfiCptEdFE8MIrvGfWbBFNjVYx76SQWvNX1j+/cQ==
   dependencies:
-    caniuse-lite "^1.0.30001181"
-    colorette "^1.2.1"
-    electron-to-chromium "^1.3.649"
+    caniuse-lite "^1.0.30001208"
+    colorette "^1.2.2"
+    electron-to-chromium "^1.3.712"
     escalade "^3.1.1"
-    node-releases "^1.1.70"
+    node-releases "^1.1.71"
 
 bser@2.1.1:
   version "2.1.1"
@@ -1666,7 +1666,7 @@ camelcase@^5.0.0:
   resolved "https://registry.npmjs.org/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
-caniuse-lite@^1.0.30001181:
+caniuse-lite@^1.0.30001208:
   version "1.0.30001208"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001208.tgz#a999014a35cebd4f98c405930a057a0d75352eb9"
   integrity sha512-OE5UE4+nBOro8Dyvv0lfx+SRtfVIOM9uhKqFmJeUbGriqhhStgp1A0OyBpgy3OUF8AhYCT+PVwPC1gMl2ZcQMA==
@@ -1852,7 +1852,7 @@ color-name@~1.1.4:
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-colorette@^1.2.1:
+colorette@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
   integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
@@ -2104,7 +2104,7 @@ ecdsa-sig-formatter@1.0.11:
   dependencies:
     safe-buffer "^5.0.1"
 
-electron-to-chromium@^1.3.649:
+electron-to-chromium@^1.3.712:
   version "1.3.712"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.712.tgz#ae467ffe5f95961c6d41ceefe858fc36eb53b38f"
   integrity sha512-3kRVibBeCM4vsgoHHGKHmPocLqtFAGTrebXxxtgKs87hNUzXrX2NuS3jnBys7IozCnw7viQlozxKkmty2KNfrw==
@@ -3298,7 +3298,7 @@ node-int64@^0.4.0:
   resolved "https://registry.npmjs.org/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
 
-node-releases@^1.1.70:
+node-releases@^1.1.71:
   version "1.1.71"
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-1.1.71.tgz#cb1334b179896b1c89ecfdd4b725fb7bbdfc7dbb"
   integrity sha512-zR6HoT6LrLCRBwukmrVbHv0EpEQjksO6GmFcZQQuCAy139BEsoVKPYnf3jongYW83fAa1torLGYwxxky/p28sg==
@@ -4234,6 +4234,11 @@ valid-url@1.0.9, valid-url@^1.0.9:
   version "1.0.9"
   resolved "https://registry.npmjs.org/valid-url/-/valid-url-1.0.9.tgz#1c14479b40f1397a75782f115e4086447433a200"
   integrity sha1-HBRHm0DxOXp1eC8RXkCGRHQzogA=
+
+voca@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/voca/-/voca-1.4.0.tgz#e15ac58b38290b72acc0c330366b6cc7984924d7"
+  integrity sha512-8Xz4H3vhYRGbFupLtl6dHwMx0ojUcjt0HYkqZ9oBCfipd/5mD7Md58m2/dq7uPuZU/0T3Gb1m66KS9jn+I+14Q==
 
 whatwg-fetch@^3.4.1:
   version "3.6.2"

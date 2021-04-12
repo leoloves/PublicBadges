@@ -7,8 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jan Hein Hoogstad",
-  "license": "MIT",
-  "devDependencies": {
-    "graphql": "^15.5.0"
-  }
+  "license": "MIT"
 }
