@@ -1,6 +1,14 @@
-import { Event } from "./models";
+import {Event, Language} from "./models";
+import {PublicBadgesEvent} from "./events";
 export * from "./events";
 export * from "./models";
+import {
+  ValueCaseStore,
+  BadgeInstanceStore,
+  RegistryStore,
+  IssuerStore,
+} from "./stores";
+export * from "./stores";
 export * from "./resolvers";
 import {
   ExternalConfig,
@@ -9,13 +17,8 @@ import {
   EventSourceConfig,
   EventSourcesConfig,
   FunctionConfig,
-  TableConfig
+  TableConfig,
 } from "./config";
-
-export interface Store<O, A, T> {
-  fetch: (args: O) => Promise<T>;
-  fetchAll: (args: A) => Promise<NonNullable<T>[]>;
-}
 
 export type PublicBadgesHandler<T, U> = (event: T) => Promise<U>;
 
@@ -50,6 +53,24 @@ export type InternalConfig = {
   resources: Resources;
 };
 
+export type PublicBadgesStores = {
+  valueCase: ValueCaseStore;
+  badgeInstance: BadgeInstanceStore;
+  registry: RegistryStore;
+  issuer: IssuerStore;
+};
+
+export type PublicBadgesEventBus = EventBus<PublicBadgesEvent>;
+
+export interface ApolloContext {
+  rawEvent: {headers: {origin: string}};
+  functionContext: {functionName: string};
+  stores: PublicBadgesStores;
+  language?: Language;
+  organizationName?: string;
+  eventBus: PublicBadgesEventBus;
+}
+
 export {
   ExternalConfig,
   FunctionConfig,
@@ -57,5 +78,5 @@ export {
   HTTPSourceConfig,
   EventSourceConfig,
   EventSourcesConfig,
-  ExternalResourceEntry
+  ExternalResourceEntry,
 };

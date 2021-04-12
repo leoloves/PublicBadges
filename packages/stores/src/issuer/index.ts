@@ -1,7 +1,5 @@
 import issuerFixture from "./issuer.json";
-import { Store, Issuer } from "@types";
-
-export type IssuerStore = Store<{}, {}, Issuer>;
+import {IssuerStore} from "@public-badges/types";
 
 const issuer: IssuerStore = {
   async fetch() {
@@ -9,7 +7,7 @@ const issuer: IssuerStore = {
   },
   async fetchAll() {
     return [issuerFixture];
-  }
+  },
 };
 
 export default issuer;

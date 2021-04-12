@@ -1,20 +1,6 @@
 service: public-badges-api
 variablesResolutionMode: 20210326
-
-package:
-  exclude:
-    - node_modules
-    - dist/assets
-  include:
-    - node_modules/apollo-server-lambda/**/*
-    - node_modules/graphql/**/*
-    - node_modules/graphql-import-node/**/*
-    - node_modules/graphql-playground-middleware-lambda/**/*
-    - node_modules/graphql-scalars/**/*
-    - node_modules/graphql-tools/**/*
-    - node_modules/uuid/**/*
-    - node_modules/voca/**/*
-    - node_modules/ramda/**/*
+  
 
 custom:
   parameter_prefix: public-badges/${opt:stage}
@@ -33,8 +19,45 @@ provider:
     role: ${self:custom.role}
 
 functions:
-  graphql:
-    handler: dist/handler.graphql
+  graphql: 
+    handler: dist/api/handler.graphql
+    package:
+      individually: true
+      patterns:
+        - node_modules/@josephg/**/*
+        - node_modules/@graphql-tools/**/*
+        - node_modules/apollo-cache-control/**/*
+        - node_modules/apollo-datasource/**/*
+        - node_modules/apollo-env/**/*
+        - node_modules/apollo-graphql/**/*
+        - node_modules/apollo-link/**/*
+        - node_modules/apollo-tracing/**/*
+        - node_modules/apollo-utilities/**/*
+        - node_modules/apollo-server-caching/**/*
+        - node_modules/apollo-server-core/**/*
+        - node_modules/apollo-server-env/**/*
+        - node_modules/apollo-server-errors/**/*
+        - node_modules/apollo-server-lambda/**/*
+        - node_modules/apollo-server-plugin-base/**/*
+        - node_modules/apollo-server-types/**/*
+        - node_modules/deprecated-decorator/**/*
+        - node_modules/fast-json-stable-stringify/**/*
+        - node_modules/graphql/**/*
+        - node_modules/graphql-tag/**/*
+        - node_modules/graphql-extensions/**/*
+        - node_modules/graphql-import-node/**/*
+        - node_modules/lru-cache/**/*
+        - node_modules/node-fetch/**/*
+        - node_modules/graphql-playground-middleware-lambda/**/*
+        - node_modules/graphql-scalars/**/*
+        - node_modules/graphql-tools/**/*
+        - node_modules/uuid/**/*
+        - node_modules/voca/**/*
+        - node_modules/ramda/**/*
+        - node_modules/ts-invariant/**/*
+        - node_modules/yallist/**/*
+        - node_modules/zen-observable/**/*
+        - node_modules/zen-observable-ts/**/*
     events:
       - http:
           path: graphql

@@ -1,4 +1,4 @@
-import { Store, Organization, OrganizationStatus } from "@types";
+import {RegistryStore, OrganizationStatus} from "@public-badges/types";
 import AWS from "aws-sdk";
 
 const ddb = new AWS.DynamoDB.DocumentClient();
@@ -9,7 +9,7 @@ const getOrganization = async (objectKey: string) => {
   if (!Bucket) {
     throw "Bucket Name is Required";
   }
-  const { Body } = await s3.getObject({ Bucket, Key: objectKey }).promise();
+  const {Body} = await s3.getObject({Bucket, Key: objectKey}).promise();
   const json = Body ? Body.toString("utf-8") : "{}";
   const organization = JSON.parse(json);
   return organization;
@@ -20,17 +20,17 @@ const listOrganizations = async () => {
   if (!Bucket) {
     throw "Bucket Name is Required";
   }
-  const { NextContinuationToken, CommonPrefixes } = await s3
-    .listObjectsV2({ Bucket, MaxKeys: 10, Delimiter: "/" })
+  const {NextContinuationToken, CommonPrefixes} = await s3
+    .listObjectsV2({Bucket, MaxKeys: 10, Delimiter: "/"})
     .promise();
   const keys: string[] = CommonPrefixes
-    ? CommonPrefixes.map(({ Prefix }) => {
-        return `${Prefix!}meta.json`;
-      })
+    ? CommonPrefixes.map(({Prefix}) => {
+      return `${Prefix!}meta.json`;
+    })
     : [];
   return {
     keys,
-    continuationToken: NextContinuationToken
+    continuationToken: NextContinuationToken,
   };
 };
 
@@ -41,9 +41,9 @@ const getOrganizationId = async (domainName: string) => {
   }
   const Key = {
     identityType: "domainName",
-    identityKey: `${domainName}`
+    identityKey: `${domainName}`,
   };
-  const { Item } = await ddb.get({ TableName, Key }).promise();
+  const {Item} = await ddb.get({TableName, Key}).promise();
   return Item && Item.organizationId;
 };
 
@@ -60,24 +60,18 @@ const queryOrganizationStatus = async (status: OrganizationStatus) => {
     IndexName,
     KeyConditionExpression: "approvalStatus = :approvalStatus",
     ExpressionAttributeValues: {
-      ":approvalStatus": status
-    }
+      ":approvalStatus": status,
+    },
   };
-  const { Items, Count } = await ddb.query(params).promise();
+  const {Items, Count} = await ddb.query(params).promise();
   const keys: string[] = Items
-    ? Items.map(({ organizationId }) => `${organizationId}/meta.json`)
+    ? Items.map(({organizationId}) => `${organizationId}/meta.json`)
     : [];
-  return { keys, totalCount: Count };
+  return {keys, totalCount: Count};
 };
 
-export type RegistryStore = Store<
-  { organizationId?: string | null; domainName?: string | null },
-  { filter?: OrganizationStatus | null },
-  Organization
->;
-
 const registry: RegistryStore = {
-  async fetch({ organizationId, domainName }) {
+  async fetch({organizationId, domainName}) {
     try {
       if (organizationId) {
         return await getOrganization(`${organizationId}/meta.json`);
@@ -94,12 +88,12 @@ const registry: RegistryStore = {
     }
     return null;
   },
-  async fetchAll({ filter }) {
-    const { keys } = filter
+  async fetchAll({filter}) {
+    const {keys} = filter
       ? await queryOrganizationStatus(filter)
       : await listOrganizations();
     return await Promise.all(keys.map(getOrganization));
-  }
+  },
 };
 
 export default registry;

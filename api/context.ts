@@ -1,15 +1,8 @@
-import eventBus, {PublicBadgesEventBus} from "../stores/eventBus";
-import * as stores from "../stores";
-import {Language} from "../types";
+import * as allStores from "@public-badges/stores";
 
-export interface ApolloContext {
-  rawEvent: {headers: {origin: string}};
-  functionContext: {functionName: string};
-  stores: stores.PublicBadgesStores;
-  language?: Language;
-  organizationName?: string;
-  eventBus: PublicBadgesEventBus;
-}
+import {ApolloContext} from "@public-badges/types";
+
+const {eventBus, ...stores} = allStores;
 
 const context: (args: {event: any; context: any}) => ApolloContext = ({
   event,

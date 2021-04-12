@@ -1,0 +1,11 @@
+{
+  "name": "@public-badges/graphql-schema",
+  "version": "0.9.9",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jan Hein Hoogstad",
+  "license": "MIT"
+}
