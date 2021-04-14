@@ -1,7 +1,7 @@
 service: public-badges-api
 variablesResolutionMode: 20210326
-  
-
+plugins:
+  - serverless-plugin-monorepo
 custom:
   parameter_prefix: public-badges/${opt:stage}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
@@ -21,8 +21,6 @@ provider:
 functions:
   graphql: 
     handler: dist/handler.graphql
-    package:
-      individually: true
     events:
       - http:
           path: graphql

@@ -6,27 +6,27 @@
   "main": "handler.ts",
   "author": "Jan Hein Hoogstad",
   "license": "MIT",
-  "scripts": {
-    "bundle": "parcel build ../dist/api/handler.js --target node --bundle-node-modules --out-dir dist --no-source-maps"
-  },
   "devDependencies": {
-    "@public-badges/types": "*",
     "@types/jws": "^3.2.3",
     "@types/ramda": "^0.27.40",
     "@types/uuid": "^8.3.0",
     "@types/voca": "^1.4.0",
-    "docsify": "^4.11.4",
+    "docsify": "^4.12.1",
     "husky": "^6.0.0",
+    "serverless-plugin-monorepo": "^0.10.0",
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@public-badges/stores": "*",
     "@public-badges/graphql-schema": "*",
+    "@public-badges/stores": "*",
+    "@public-badges/types": "*",
     "apollo-server-lambda": "^2.22.2",
-    "aws-sdk": "^2.884.0",
+    "aws-sdk": "^2.885.0",
     "graphql": "^15.5.0",
+    "graphql-import-node": "^0.0.4",
     "graphql-scalars": "^1.9.0",
     "jws": "^4.0.0",
+    "module-alias": "^2.2.2",
     "uuid": "^8.3.2",
     "voca": "^1.4.0"
   }

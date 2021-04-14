@@ -9,11 +9,11 @@ const server = new ApolloServer({
   context,
   introspection: true,
   playground: {
-    endpoint: "/pilot/graphql",
+    endpoint: "/dev/graphql",
   },
 });
 
-const graphql = server.createHandler({
+export const graphql = server.createHandler({
   cors: {
     origin: "*",
     credentials: true,

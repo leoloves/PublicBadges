@@ -1,0 +1,9 @@
+{
+  "headers": {
+    "Accept": "application/json"
+  },
+  "path": "/graphql",
+  "resource": "/zipcodes",
+  "httpMethod": "POST",
+  "body": "{\"query\":\"query {\\n  getAllBadges    }\",\"variables\":{},\"operationName\":null}"
+}
