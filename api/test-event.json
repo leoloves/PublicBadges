@@ -5,5 +5,5 @@
   "path": "/graphql",
   "resource": "/zipcodes",
   "httpMethod": "POST",
-  "body": "{\"query\":\"query {\\n  getAllBadges    }\",\"variables\":{},\"operationName\":null}"
+  "body": "{\"query\":\"query {\\n  getAllBadges(domainName: \"offcourse.io\"){name}  }\"}"
 }

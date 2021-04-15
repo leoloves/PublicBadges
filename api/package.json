@@ -6,6 +6,10 @@
   "main": "handler.ts",
   "author": "Jan Hein Hoogstad",
   "license": "MIT",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/jws": "^3.2.3",
     "@types/ramda": "^0.27.40",
@@ -13,6 +17,7 @@
     "@types/voca": "^1.4.0",
     "docsify": "^4.12.1",
     "husky": "^6.0.0",
+    "rimraf": "^3.0.2",
     "serverless-plugin-monorepo": "^0.10.0",
     "typescript": "^4.2.4"
   },
