@@ -1,7 +1,0 @@
-- name: graphql endpoint returns 200
-  endpoint:
-    function: graphql
-  response:
-    status: 200
-    path: /graphql
-
