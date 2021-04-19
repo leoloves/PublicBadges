@@ -16,7 +16,13 @@
     "build:stores": "yarn workspace @public-badges/stores build",
     "build:packages": "yarn build:schema && yarn build:types && yarn build:stores",
     "build:api": "yarn workspace @public-badges/api build",
+    "build:registryFlow": "yarn workspace @public-badges/registry-flow build",
+    "build:badgesFlow": "yarn workspace @public-badges/badges-flow build",
+    "build:services": "yarn build:api && yarn build:registryFlow && yarn build:badgesFlow",
     "deploy:api": "yarn workspace @public-badges/api deploy",
+    "deploy:registryFlow": "yarn workspace @public-badges/registry-flow deploy",
+    "deploy:badgesFlow": "yarn workspace @public-badges/badges-flow deploy",
+    "deploy:services": "yarn deploy:api && yarn deploy:registryFlow && yarn deploy:badgesFlow",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "repository": {
@@ -40,6 +46,8 @@
   },
   "workspaces": [
     "api",
+    "badgesFlow",
+    "registryFlow",
     "packages/graphql-schema",
     "packages/types",
     "packages/stores"

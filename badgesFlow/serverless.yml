@@ -1,0 +1,83 @@
+service: public-badges-badges-flow
+variablesResolutionMode: 20210326
+plugins:
+  - serverless-plugin-monorepo
+
+custom:
+  parameter_prefix: public-badges/${opt:stage}
+  event_bus: ${ssm:/${self:custom.parameter_prefix}/badges/event_bus}
+  role: ${ssm:/${self:custom.parameter_prefix}/api/role}
+  registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
+  function_prefix: public-badges-${opt:stage}
+  api: ${self:custom.function_prefix}-graphql
+  save_badge: ${self:custom.function_prefix}.save-badge
+  run_value_case_scenarios: ${self:custom.function_prefix}.run-value-case-scenarios
+  prepare_open_badge_artifact: ${self:custom.function_prefix}.prepare-open-badge-artifact
+  sign_open_badge_artifact: ${self:custom.function_prefix}.sign-open-badge-artifact
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-1
+  eventBridge:
+    useCloudFormation: true
+  lambdaHashingVersion: 20201221
+  iam:
+    role: ${self:custom.role}
+
+functions:
+  saveBadge:
+    handler: dist/index.saveBadge
+    events:
+      - eventBridge:
+          eventBus: ${self:custom.event_bus}
+          pattern:
+            source:
+              - ${self:custom.api}
+              - ${self:custom.run_value_case_scenarios}
+              - ${self:custom.sign_open_badge_artifact}
+            detail-type: 
+             - BADGE_ISSUANCE_REQUESTED
+             - BADGE_ISSUANCE_APPROVED
+             - BADGE_ISSUANCE_REJECTED
+             - OPEN_BADGES_ARTIFACT_SIGNED
+    environment:
+      REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      HANDLER_NAME: ${self:custom.save_badge}
+  runValueCaseScenarios:
+    handler: dist/index.runValueCaseScenarios
+    events:
+      - eventBridge:
+          eventBus: ${self:custom.event_bus}
+          pattern:
+            source:
+              - ${self:custom.api}
+            detail-type: 
+             - BADGE_ISSUANCE_REQUESTED
+    environment:
+      REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      HANDLER_NAME: ${self:custom.run_value_case_scenarios}
+  prepareOpenBadgeArtifact:
+    handler: dist/index.prepareOpenBadgeArtifact
+    events:
+      - eventBridge:
+          pattern:
+            source:
+              - ${self:custom.run_value_case_scenarios}
+            detail-type: 
+             - BADGE_ISSUANCE_APPROVED
+    environment:
+      REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      HANDLER_NAME: ${self:custom.prepare_open_badge_artifact}
+  signOpenBadgeArtifact:
+    handler: dist/index.signOpenBadgeArtifact
+    events:
+      - eventBridge:
+          eventBus: ${self:custom.event_bus}
+          pattern:
+            source:
+              - ${self:custom.prepare_open_badge_artifact}
+            detail-type: 
+             - OPEN_BADGES_ARTIFACT_CREATED
+    environment:
+      HANDLER_NAME: ${self:custom.sign_open_badge_artifact}

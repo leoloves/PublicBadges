@@ -1,4 +1,4 @@
-# Services
+# Badges Flow
 
 - [ ] Write Serverless Templates
 - [ ] Write Github Action Workflow

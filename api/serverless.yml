@@ -8,7 +8,8 @@ custom:
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
   organization-status-index: ${ssm:/${self:custom.parameter_prefix}/registry/indices/organization_status}
   role: ${ssm:/${self:custom.parameter_prefix}/api/role}
-  graphql: public-badges-${opt:stage}-graphql
+  function_prefix: public-badges-${opt:stage}
+  api: ${self:custom.function_prefix}-graphql
 
 provider:
   name: aws
@@ -37,6 +38,6 @@ functions:
     environment:
       SLS_ENVIRONMENT: ${opt:stage}
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
-      HANDLER_NAME: ${self:custom.graphql}
+      HANDLER_NAME: ${self:custom.api}
       REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup}
       ORGANIZATION_STATUS_INDEX: ${self:custom.organization-status-index}
