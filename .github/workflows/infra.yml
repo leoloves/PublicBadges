@@ -53,6 +53,7 @@ jobs:
         path: packages
   deployAPI:
     name: 'Deploy API'
+    needs: buildPackages
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
