@@ -41,7 +41,7 @@ jobs:
       with:
         node-version: '14'
     - name: Use Husky
-      run: yarn prepare
+      run: npm run prepare
     - name: Install Dependencies
       run: yarn install
     - name: Build Packages Code
@@ -67,6 +67,6 @@ jobs:
     - name: Install Dependencies
       run: yarn install
     - name: Use Husky
-      run: yarn prepare
+      run: npm run prepare
     - name: Build API code
       run: yarn build:api
