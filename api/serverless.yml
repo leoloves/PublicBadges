@@ -35,6 +35,7 @@ functions:
           method: any
           cors: true
     environment:
+      SLS_ENVIRONMENT: ${opt:stage}
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       HANDLER_NAME: ${self:custom.graphql}
       REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup}
