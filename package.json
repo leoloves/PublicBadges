@@ -16,6 +16,7 @@
     "build:stores": "yarn workspace @public-badges/stores build",
     "build:packages": "yarn build:schema && yarn build:types && yarn build:stores",
     "build:api": "yarn workspace @public-badges/api build",
+    "prebuild:api": "yarn build:packages",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "repository": {
