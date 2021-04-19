@@ -40,10 +40,10 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
-    - name: Use Husky
-      run: npm run prepare
     - name: Install Dependencies
       run: yarn install
+    - name: Use Husky
+      run: yarn prepare
     - name: Build Packages Code
       run: yarn build:packages
     - name: Upload Packages
@@ -67,6 +67,6 @@ jobs:
     - name: Install Dependencies
       run: yarn install
     - name: Use Husky
-      run: npm run prepare
+      run: yarn prepare
     - name: Build API code
       run: yarn build:api
