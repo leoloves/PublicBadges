@@ -44,7 +44,9 @@ jobs:
       run: yarn install
     - name: Use Husky
       run: yarn prepare
-    - name: Build Packages Xode
+    - name: Build Packages Code
       run: yarn build:packages
     - name: Build API code
       run: yarn build:api
+    - name: Deploy API 
+      run: yarn deploy:api
