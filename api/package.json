@@ -9,7 +9,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "deploy": "serverless deploy -s dev"
+    "deploy": "serverless deploy -s ${SLS_ENVIRONMENT:-dev}"
   },
   "devDependencies": {
     "@types/jws": "^3.2.3",

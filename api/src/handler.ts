@@ -3,13 +3,15 @@ import resolvers from "./resolvers";
 import typeDefs from "@public-badges/graphql-schema";
 import context from "./context";
 
+const environment = process.env.SLS_ENVIRONMENT;
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context,
   introspection: true,
   playground: {
-    endpoint: "/dev/graphql",
+    endpoint: `/${environment}/graphql`,
   },
 });
 
