@@ -32,8 +32,8 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve
-  build:
-    name: 'build'
+  buildPackages:
+    name: 'Build Packages'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -44,5 +44,28 @@ jobs:
       run: npm install
     - name: Use Husky
       run: npm run prepare
-    - name: Build Code
+    - name: Build Packages Code
+      run: npm run build:packages
+    - name: Upload Packages
+      uses: actions/upload-artifact@v2
+      with:
+        name: packages
+        path: packages
+  deployAPI:
+    name: 'Deploy API'
+    runs-on: ubuntu-latest
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download Packages
+      uses: actions/download-artifact@v2
+      with:
+        name: packages
+    - name: Install Dependencies
+      run: npm install
+    - name: Use Husky
+      run: npm run prepare
+    - name: Build API code
       run: npm run build:api
