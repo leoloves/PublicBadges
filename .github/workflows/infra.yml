@@ -44,3 +44,5 @@ jobs:
       run: npm install
     - name: Use Husky
       run: npm run prepare
+    - name: Build Code
+      run: npm run build:api
