@@ -41,4 +41,6 @@ jobs:
       with:
         node-version: '14'
     - name: Install Dependencies
-      run: npm prepare && npm install 
+      run: npm install
+    - name: Use Husky
+      run: npm run prepare
