@@ -23,7 +23,6 @@ const saveOrganization: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   detailType,
   detail,
 }) => {
-  console.log(JSON.stringify(detail, null, 2));
   const {organizationId: id} = detail;
   switch (detailType) {
     case EV.ORGANIZATION_REGISTRATION_REQUESTED: {
