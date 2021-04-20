@@ -13,6 +13,7 @@ variable "policies" {
 locals {
   name = "badges"
   event_bus = "${var.project_prefix}-${local.name}-event-bus-${var.environment_name}"
+  role = "${var.project_prefix}-${local.name}-role-${var.environment_name}"
   parameter_prefix="/${var.project_prefix}/${var.environment_name}/${local.name}"
 }
 

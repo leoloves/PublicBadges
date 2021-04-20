@@ -13,6 +13,7 @@ variable "policies" {
 locals {
   name = "registry"
   environment_suffix = title(var.environment_name)
+  role = "${var.project_prefix}-${local.name}-role-${var.environment_name}"
   bucket = "${var.project_prefix}-${local.name}-bucket-${var.environment_name}"
   event_bus = "${var.project_prefix}-${local.name}-event-bus-${var.environment_name}"
   lookup_table = "${var.project_prefix}-${local.name}-lookup-table-${var.environment_name}"
