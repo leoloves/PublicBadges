@@ -49,6 +49,9 @@ module "public-spaces-registry" {
   environment_name = local.environment_name
   project_prefix   = "public-badges"
   policies = [
+    module.public-spaces-registry.read_registry_bucket_policy,
+    module.public-spaces-registry.write_registry_event_bus_policy,
+    module.public-spaces-registry.read_registry_lookup_table_policy,
     local.lambda_basic_execution_role
   ]
 }
@@ -58,6 +61,8 @@ module "public-spaces-badges" {
   environment_name = local.environment_name
   project_prefix   = "public-badges"
   policies = [
+    module.public-spaces-registry.read_registry_bucket_policy,
+    module.public-spaces-badges.write_badges_event_bus_policy,
     local.lambda_basic_execution_role
   ]
 }
