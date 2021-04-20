@@ -6,6 +6,10 @@ variable "project_prefix" {
   type = string
 }
 
+variable "policies" {
+  type = list
+}
+
 locals {
   name = "registry"
   environment_suffix = title(var.environment_name)

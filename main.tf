@@ -5,7 +5,7 @@ variable "TFC_WORKSPACE_NAME" {
 
 locals {
   lambda_basic_execution_role = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  environment_name            = var.TFC_WORKSPACE_NAME != "" ? trimprefix(var.TFC_WORKSPACE_NAME, "public-badges-") : terraform.workspace
+  environment_name = var.TFC_WORKSPACE_NAME != "" ? trimprefix(var.TFC_WORKSPACE_NAME, "public-badges-") : terraform.workspace
 }
 
 terraform {
@@ -48,10 +48,16 @@ module "public-spaces-registry" {
   source           = "./infra/registry"
   environment_name = local.environment_name
   project_prefix   = "public-badges"
+  policies = [
+    local.lambda_basic_execution_role
+  ]
 }
 
 module "public-spaces-badges" {
   source           = "./infra/badges"
   environment_name = local.environment_name
   project_prefix   = "public-badges"
+  policies = [
+    local.lambda_basic_execution_role
+  ]
 }

@@ -6,6 +6,10 @@ variable "project_prefix" {
   type = string
 }
 
+variable "policies" {
+  type = list
+}
+
 locals {
   name = "badges"
   event_bus = "${var.project_prefix}-${local.name}-event-bus-${var.environment_name}"

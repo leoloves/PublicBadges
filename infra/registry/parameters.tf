@@ -22,3 +22,8 @@ resource "aws_ssm_parameter" "organization_status_index_name" {
   value       = local.organization_status_index
 }
 
+resource "aws_ssm_parameter" "registry_role" {
+  name        = "${local.parameter_prefix}/role"
+  type        = "SecureString"
+  value       = aws_iam_role.registry_role.arn
+}
