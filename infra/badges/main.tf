@@ -23,6 +23,17 @@ resource "aws_iam_policy" "badges_event_bus_write_access" {
   policy = data.aws_iam_policy_document.badges_event_bus_write_access.json
 }
 
+data "aws_iam_policy_document" "lambda_role_assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+  }
+}
+
 resource "aws_iam_role" "badges_role" {
   name                = local.role
   assume_role_policy = data.aws_iam_policy_document.lambda_role_assume_role_policy.json
