@@ -50,6 +50,7 @@ module "public-spaces-registry" {
   project_prefix   = "public-badges"
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
+    module.public-spaces-registry.write_registry_bucket_policy,
     module.public-spaces-registry.write_registry_event_bus_policy,
     module.public-spaces-registry.read_registry_lookup_table_policy,
     local.lambda_basic_execution_role

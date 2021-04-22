@@ -7,6 +7,9 @@
   "author": "Jan Hein Hoogstad",
   "license": "MIT",
   "scripts": {
+    "invoke:saveOrganization": "serverless invoke -s ${SLS_ENVIRONMENT:-dev} -f saveOrganization -p events/ORGANIZATION_REGISTRATION_REQUESTED.json",
+    "invoke-local:saveOrganization": "serverless invoke local -s ${SLS_ENVIRONMENT:-dev} -f saveOrganization -p events/ORGANIZATION_REGISTRATION_REQUESTED.json",
+    "preinvoke-local:saveOrganization": "yarn build",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "deploy": "serverless deploy -s ${SLS_ENVIRONMENT:-dev}"
