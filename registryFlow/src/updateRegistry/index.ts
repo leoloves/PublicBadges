@@ -9,6 +9,7 @@ export type InputEvent = OrganizationRegistrationRequestedEvent;
 export type OutputEvent = null;
 
 const ddb = new AWS.DynamoDB.DocumentClient();
+
 const updateRegistry: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   detailType,
   detail,

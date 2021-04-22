@@ -79,8 +79,11 @@ const registry: RegistryStore = {
 
       if (domainName) {
         const newOrganizationId = await getOrganizationId(domainName);
-        if (organizationId) {
-          return await getOrganization(`${newOrganizationId}/meta.json`);
+        if (newOrganizationId) {
+          const organization = await getOrganization(
+            `${newOrganizationId}/meta.json`
+          );
+          return organization;
         }
       }
     } catch (e) {

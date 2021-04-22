@@ -7,15 +7,15 @@ const eventBus: PublicBadgesEventBus = {
     put: async ({ detailType, detail }) => {
         const Source = process.env.HANDLER_NAME;
         if (!Source) {
-            throw "The handler name must be set in your environment";
+            throw new Error("The handler name must be set in your environment");
         }
 
         const DetailType = detailType;
         const Detail = JSON.stringify(detail, null, 2);
-
         const event = {
             Source,
             DetailType,
+            EventBusName: process.env.EVENT_BUS_NAME,
             Detail,
         };
         console.log(event);

@@ -41,6 +41,7 @@ functions:
              - ORGANIZATION_APPROVAL_ACCEPTED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      EVENT_BUS_NAME: ${self:custom.event_bus}
       HANDLER_NAME: ${self:custom.save_organization}
   approveOrganization:
     handler: dist/index.approveOrganization
@@ -54,6 +55,7 @@ functions:
               - ORGANIZATION_APPROVAL_REQUESTED
     environment:
       HANDLER_NAME: ${self:custom.approve_organization}
+      EVENT_BUS_NAME: ${self:custom.event_bus}
   updateRegistry:
     handler: dist/index.updateRegistry
     events:
@@ -68,4 +70,5 @@ functions:
              - ORGANIZATION_APPROVAL_ACCEPTED
     environment:
       REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup}
+      EVENT_BUS_NAME: ${self:custom.event_bus}
       HANDLER_NAME: ${self:custom.update_registry_lookup}
