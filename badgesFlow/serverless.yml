@@ -5,7 +5,7 @@ plugins:
 
 custom:
   parameter_prefix: public-badges/${opt:stage}
-  event_bus: ${ssm:/${self:custom.parameter_prefix}/badges/event_bus}
+  event_bus: ${ssm:/${self:custom.parameter_prefix}/shared/event_bus}
   role: ${ssm:/${self:custom.parameter_prefix}/badges/role}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   function_prefix: public-badges-${opt:stage}
