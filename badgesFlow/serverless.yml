@@ -43,6 +43,7 @@ functions:
              - OPEN_BADGES_ARTIFACT_SIGNED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      EVENT_BUS: ${self:custom.event_bus}
       HANDLER_NAME: ${self:custom.save_badge}
   runValueCaseScenarios:
     handler: dist/index.runValueCaseScenarios
@@ -56,6 +57,7 @@ functions:
              - BADGE_ISSUANCE_REQUESTED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      EVENT_BUS: ${self:custom.event_bus}
       HANDLER_NAME: ${self:custom.run_value_case_scenarios}
   prepareOpenBadgeArtifact:
     handler: dist/index.prepareOpenBadgeArtifact
@@ -68,6 +70,7 @@ functions:
              - BADGE_ISSUANCE_APPROVED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
+      EVENT_BUS: ${self:custom.event_bus}
       HANDLER_NAME: ${self:custom.prepare_open_badge_artifact}
   signOpenBadgeArtifact:
     handler: dist/index.signOpenBadgeArtifact
@@ -81,3 +84,4 @@ functions:
              - OPEN_BADGES_ARTIFACT_CREATED
     environment:
       HANDLER_NAME: ${self:custom.sign_open_badge_artifact}
+      EVENT_BUS: ${self:custom.event_bus}
