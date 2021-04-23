@@ -52,13 +52,6 @@ resource "aws_s3_bucket" "registry_bucket" {
   }
 }
 
-resource "aws_cloudwatch_event_bus" "registry_event_bus" {
-  name = local.event_bus
-  tags = {
-    Environment = var.environment_name
-  }
-}
-
 data "aws_iam_policy_document" "lambda_role_assume_role_policy" {
   statement {
     actions = ["sts:AssumeRole"]
