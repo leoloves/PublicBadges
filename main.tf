@@ -30,15 +30,20 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+module "public-spaces-shared" {
+  source           = "./infra/shared"
+  environment_name = local.environment_name
+  project_prefix   = "public-badges"
+}
+
 module "public-spaces-api" {
   source           = "./infra/api"
   environment_name = local.environment_name
   project_prefix   = "public-badges"
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
-    module.public-spaces-registry.write_registry_event_bus_policy,
-    module.public-spaces-badges.write_badges_event_bus_policy,
     module.public-spaces-registry.read_registry_lookup_table_policy,
+    module.public-spaces-shared.write_event_bus_policy,
     local.lambda_basic_execution_role
   ]
 }
@@ -51,7 +56,6 @@ module "public-spaces-registry" {
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
     module.public-spaces-registry.write_registry_bucket_policy,
-    module.public-spaces-registry.write_registry_event_bus_policy,
     module.public-spaces-registry.read_registry_lookup_table_policy,
     local.lambda_basic_execution_role
   ]
@@ -63,7 +67,6 @@ module "public-spaces-badges" {
   project_prefix   = "public-badges"
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
-    module.public-spaces-badges.write_badges_event_bus_policy,
     local.lambda_basic_execution_role
   ]
 }
