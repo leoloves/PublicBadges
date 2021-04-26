@@ -8,8 +8,8 @@ const newHandler: (handler: PublicBadgesHandler<any, any>) => AWSHandler = (
   handler
 ) => {
   return async (awsEvent, _context, callback) => {
-    const detail = awsEvent.detail;
-    const detailType = awsEvent["detail-type"];
+    const detail = awsEvent["Detail"];
+    const detailType = awsEvent["DetailType"];
     const event = await handler({
       detailType,
       detail,
@@ -17,8 +17,9 @@ const newHandler: (handler: PublicBadgesHandler<any, any>) => AWSHandler = (
     if (event) {
       const reply = await eventBus.put(event);
       callback(null, reply);
+    } else {
+      callback(null, "nothing memorable happened");
     }
-    callback(null, "nothing memorable happened");
   };
 };
 
