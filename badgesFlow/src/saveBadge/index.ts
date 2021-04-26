@@ -31,7 +31,7 @@ const saveBadge: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
       await putBadge(id, detail);
       return {
         detailType: EV.BADGE_INSTANCE_UPDATED,
-        detail: detail,
+        detail,
       };
     }
   }
