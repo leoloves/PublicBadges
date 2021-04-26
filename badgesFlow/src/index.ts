@@ -8,8 +8,8 @@ const newHandler: (handler: PublicBadgesHandler<any, any>) => AWSHandler = (
   handler
 ) => {
   return async (awsEvent, _context, callback) => {
-    const detail = awsEvent["Detail"];
-    const detailType = awsEvent["DetailType"];
+    const detail = awsEvent["detail"];
+    const detailType = awsEvent["detail-type"];
     const event = await handler({
       detailType,
       detail,
