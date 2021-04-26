@@ -12,10 +12,11 @@ const eventBus: PublicBadgesEventBus = {
 
         const DetailType = detailType;
         const Detail = JSON.stringify(detail, null, 2);
+        const EventBusName = process.env.EVENT_BUS_NAME;
         const event = {
             Source,
             DetailType,
-            EventBusName: process.env.EVENT_BUS_NAME,
+            EventBusName,
             Detail,
         };
         console.log(event);

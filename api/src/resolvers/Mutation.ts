@@ -1,102 +1,106 @@
 import {
-  MutationResolvers,
-  OrganizationStatus,
-  PublicBadgeStatus,
-  PublicBadge,
-  PublicBadgesEventType,
-  Organization,
+    MutationResolvers,
+    OrganizationStatus,
+    PublicBadgeStatus,
+    PublicBadge,
+    PublicBadgesEventType,
+    Organization,
 } from "@public-badges/types";
-import {v1 as uuid} from "uuid";
+import { v1 as uuid } from "uuid";
 
 const timeout = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+    new Promise((resolve) => setTimeout(resolve, ms));
 
 const {
-  ORGANIZATION_REGISTRATION_REQUESTED,
-  BADGE_ISSUANCE_REQUESTED,
+    ORGANIZATION_REGISTRATION_REQUESTED,
+    BADGE_ISSUANCE_REQUESTED,
 } = PublicBadgesEventType;
 
 const Mutation: MutationResolvers = {
-  async applyForBadge(_root, {input}, {stores, eventBus}) {
-    const {valueCaseId, domainName} = input;
+    async applyForBadge(_root, { input }, { stores, eventBus }) {
+        const { valueCaseId, domainName } = input;
 
-    /**
-               short timeout just to make sure, the registry is updated to avoid duplicates.
-               It's highly unlikely (and relatively innocent) but still...
-               The unavoidable perils of async ;-)
-            **/
-    await timeout(500);
-    const organization = await stores.registry.fetch({domainName});
-    if (!organization) {
-      throw new Error("ORG DOES NOT EXISTS");
-    }
+        /**
+                           short timeout just to make sure, the registry is updated to avoid duplicates.
+                           It's highly unlikely (and relatively innocent) but still...
+                           The unavoidable perils of async ;-)
+                        **/
+        await timeout(500);
+        const organization = await stores.registry.fetch({ domainName });
+        if (!organization) {
+            throw new Error("ORG DOES NOT EXISTS");
+        }
 
-    const valueCase = await stores.valueCase.fetch({valueCaseId});
-    if (!valueCase) {
-      throw new Error("ValueCase does not exist");
-    }
+        if (organization.status === OrganizationStatus.Pending) {
+            throw new Error("YOUR ORGANIZATION IS NOT YET APPROVED");
+        }
 
-    const organizationId = organization.organizationId;
-    const badge = await stores.badgeInstance.fetch({
-      organizationId,
-      valueCaseId,
-    });
+        const valueCase = await stores.valueCase.fetch({ valueCaseId });
+        if (!valueCase) {
+            throw new Error("ValueCase does not exist");
+        }
 
-    if (badge) {
-      throw new Error("your organization already applied for this badge");
-    }
+        const organizationId = organization.organizationId;
+        const badge = await stores.badgeInstance.fetch({
+            organizationId,
+            valueCaseId,
+        });
 
-    const badgeId = uuid();
-    const status = PublicBadgeStatus.Pending;
-    const {name, tags, description, narrative} = valueCase;
+        if (badge) {
+            throw new Error("your organization already applied for this badge");
+        }
 
-    return eventBus.put({
-      detailType: BADGE_ISSUANCE_REQUESTED,
-      detail: {
-        badgeId,
-        status,
-        valueCaseId,
-        name,
-        tags,
-        description,
-        narrative,
-        recipientId: organizationId,
-      },
-    }) as Promise<PublicBadge>;
-  },
-  async registerOrganization(_root, {input}, {eventBus, stores}) {
-    const {name, contact, admin, domainName} = input;
+        const badgeId = uuid();
+        const status = PublicBadgeStatus.Pending;
+        const { name, tags, description, narrative } = valueCase;
 
-    /**
-               short timeout just to make sure, the registry is updated to avoid duplicates.
-               It's highly unlikely (and relatively innocent) but still...
-               The unavoidable perils of async ;-)
-            **/
+        return eventBus.put({
+            detailType: BADGE_ISSUANCE_REQUESTED,
+            detail: {
+                badgeId,
+                status,
+                valueCaseId,
+                name,
+                tags,
+                description,
+                narrative,
+                recipientId: organizationId,
+            },
+        }) as Promise<PublicBadge>;
+    },
+    async registerOrganization(_root, { input }, { eventBus, stores }) {
+        const { name, contact, admin, domainName } = input;
 
-    await timeout(500);
-    const organization = await stores.registry.fetch({domainName});
-    console.log(organization);
-    console.log(process.env.REGISTRY_BUCKET, process.env.REGISTRY_BUCKET);
+        /**
+                           short timeout just to make sure, the registry is updated to avoid duplicates.
+                           It's highly unlikely (and relatively innocent) but still...
+                           The unavoidable perils of async ;-)
+                        **/
 
-    if (organization) {
-      throw new Error("ORG ALREADY EXISTS");
-    }
-    const organizationId = uuid();
-    const status = OrganizationStatus.Pending;
+        await timeout(500);
+        const organization = await stores.registry.fetch({ domainName });
+        console.log(organization);
+        console.log(process.env.REGISTRY_BUCKET, process.env.REGISTRY_BUCKET);
 
-    return eventBus.put({
-      detailType: ORGANIZATION_REGISTRATION_REQUESTED,
-      detail: {
-        organizationId,
-        status,
-        name,
-        contact,
-        admin,
-        domainName,
-        urls: [domainName],
-      },
-    }) as Promise<Organization>;
-  },
+        if (organization) {
+            throw new Error("ORG ALREADY EXISTS");
+        }
+        const organizationId = uuid();
+        const status = OrganizationStatus.Pending;
+
+        return eventBus.put({
+            detailType: ORGANIZATION_REGISTRATION_REQUESTED,
+            detail: {
+                organizationId,
+                status,
+                name,
+                contact,
+                admin,
+                domainName,
+                urls: [domainName],
+            },
+        }) as Promise<Organization>;
+    },
 };
 
 export default Mutation;
