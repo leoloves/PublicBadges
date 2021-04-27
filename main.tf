@@ -3,7 +3,7 @@ variable "TFC_WORKSPACE_NAME" {
   default = ""
 }
 
-variable "badges_secret_key" {
+variable "BADGES_SECRET_KEY" {
   type = string
 }
 
@@ -69,7 +69,7 @@ module "public-spaces-registry" {
 module "public-spaces-badges" {
   source           = "./infra/badges"
   environment_name = local.environment_name
-  secret_key       = var.badges_secret_key
+  secret_key       = var.BADGES_SECRET_KEY
   project_prefix   = "public-badges"
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
