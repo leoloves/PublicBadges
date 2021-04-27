@@ -2,6 +2,10 @@ variable "environment_name" {
   type = string
 }
 
+variable "secret_key" {
+  type = string
+}
+
 variable "project_prefix" {
   type = string
 }
