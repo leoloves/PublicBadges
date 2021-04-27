@@ -5,6 +5,7 @@ plugins:
 
 custom:
   parameter_prefix: public-badges/${opt:stage}
+  secret_key: ${ssm:/${self:custom.parameter_prefix}/badges/secret_key}
   event_bus: ${ssm:/${self:custom.parameter_prefix}/shared/event_bus}
   role: ${ssm:/${self:custom.parameter_prefix}/badges/role}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
@@ -85,5 +86,5 @@ functions:
              - OPEN_BADGES_ARTIFACT_CREATED
     environment:
       HANDLER_NAME: ${self:custom.sign_open_badge_artifact}
+      PRIVATE_KEY: ${self:custom.private_key}
       EVENT_BUS_NAME: ${self:custom.event_bus}
-      EVENT_BUS: ${self:custom.event_bus}
