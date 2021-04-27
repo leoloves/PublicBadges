@@ -1,6 +1,7 @@
 import {
   PublicBadgesEventType as EV,
   BadgeIssuanceApprovedEvent,
+  Errors,
   OpenBadgeArtifactCreated,
   PublicBadgesHandler,
 } from "@public-badges/types";
@@ -25,17 +26,17 @@ const prepareOpenBadgeArtifact: PublicBadgesHandler<
         organizationId: recipientId,
       });
       if (!organization) {
-        throw new Error("invalid badge, no corresponding organization");
+        throw new Error(Errors.MISSING_ORGANIZATION);
       }
       const valueCase = await valueCaseStore.fetch({
         valueCaseId,
       });
       if (!valueCase) {
-        throw new Error("invalid badge, no corresponding value case");
+        throw new Error(Errors.MISSING_VALUE_CASE);
       }
       const issuer = await issuerStore.fetch({});
       if (!issuer) {
-        throw new Error("invalid badge, no corresponding issuer");
+        throw new Error(Errors.MISSING_ISSUER);
       }
       const artifact = createArtifact({
         badgeInstance: detail,

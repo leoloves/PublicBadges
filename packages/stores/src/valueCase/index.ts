@@ -1,29 +1,28 @@
 import valueCaseFixture from "./valueCase.json";
-import { ValueCaseStore, Language } from "@public-badges/types";
+import {ValueCaseStore, Language, Errors} from "@public-badges/types";
 
 const valueCase: ValueCaseStore = {
-    async fetch({ valueCaseId, language }) {
-        if (valueCaseId !== valueCaseFixture.valueCaseId) {
-            throw "invalid badge, no corresponding value case";
-        }
+  async fetch({valueCaseId, language}) {
+    if (valueCaseId !== valueCaseFixture.valueCaseId) {
+      throw new Error(Errors.MISSING_VALUE_CASE);
+    }
 
-        const valueCase = valueCaseFixture;
-        if (!language || language === Language.En) {
-            return valueCase;
-        }
+    if (!language || language === Language.En) {
+      return valueCaseFixture;
+    }
 
-        const localization =
-            valueCase.localization && valueCase.localization[language];
+    const localization =
+      valueCaseFixture.localization && valueCaseFixture.localization[language];
 
-        if (!localization) {
-            throw "this valuecas eis not translated in the language that you requested";
-        }
+    if (!localization) {
+      throw new Error(Errors.MISSING_LOCALIZATION);
+    }
 
-        return { ...valueCase, ...localization };
-    },
-    async fetchAll() {
-        return [valueCaseFixture];
-    },
+    return {...valueCaseFixture, ...localization};
+  },
+  async fetchAll() {
+    return [valueCaseFixture];
+  },
 };
 
 export default valueCase;

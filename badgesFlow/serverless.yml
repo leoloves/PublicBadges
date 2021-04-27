@@ -63,6 +63,7 @@ functions:
     handler: dist/index.prepareOpenBadgeArtifact
     events:
       - eventBridge:
+          eventBus: ${self:custom.event_bus}
           pattern:
             source:
               - ${self:custom.run_value_case_scenarios}

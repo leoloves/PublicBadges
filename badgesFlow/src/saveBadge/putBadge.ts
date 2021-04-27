@@ -1,5 +1,5 @@
 import AWS from "aws-sdk"; // eslint-disable-line import/no-extraneous-dependencies
-import {PublicBadge} from "@public-badges/types";
+import {PublicBadge, Errors} from "@public-badges/types";
 const s3 = new AWS.S3();
 
 type Save<T> = (id: string, document: T) => Promise<T>;
@@ -7,7 +7,7 @@ type Save<T> = (id: string, document: T) => Promise<T>;
 const putBadge: Save<PublicBadge> = async (id, badge) => {
   const Bucket = process.env.REGISTRY_BUCKET;
   if (!Bucket) {
-    throw new Error("Bucket Name is Required");
+    throw new Error(Errors.MISSING_BUCKET_NAME);
   }
   const Key = `${id}.json`;
   const reply = await s3

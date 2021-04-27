@@ -1,5 +1,6 @@
 import AWS from "aws-sdk"; // eslint-disable-line import/no-extraneous-dependencies
 import {
+  Errors,
   PendingOrganization,
   ApprovedOrganization,
 } from "@public-badges/types";
@@ -12,7 +13,7 @@ const putOrganization: Save<
 > = async (id, organization) => {
   const Bucket = process.env.REGISTRY_BUCKET;
   if (!Bucket) {
-    throw new Error("Bucket Name is Required");
+    throw new Error(Errors.MISSING_BUCKET_NAME);
   }
   const Key = `${id}/meta.json`;
   const reply = await s3

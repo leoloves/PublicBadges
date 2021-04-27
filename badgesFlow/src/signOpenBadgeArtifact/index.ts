@@ -6,6 +6,7 @@ import {
   OpenBadgeArtifactSigned,
   PublicBadgesHandler,
   PublicBadgeStatus,
+  Errors,
 } from "@public-badges/types";
 
 export type InputEvent = OpenBadgeArtifactCreated;
@@ -21,7 +22,7 @@ const signOpenBadgeArtifact: PublicBadgesHandler<
       const privateKey = process.env.PRIVATE_KEY;
       const {issuedOn, expires} = artifact;
       if (!privateKey) {
-        throw new Error("no privateKey set");
+        throw new Error(Errors.MISSING_PRIVATE_KEY);
       }
       const signature = jws.sign({
         header: {alg: "HS256"},

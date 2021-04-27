@@ -1,6 +1,6 @@
 import artifact from "./zerobadge.json";
 import { times, partial } from "ramda";
-import { BadgeInstanceStore } from "@public-badges/types";
+import { BadgeInstanceStore, Errors } from "@public-badges/types";
 import AWS from "aws-sdk";
 
 const s3 = new AWS.S3();
@@ -12,7 +12,7 @@ const badges = [...times(partial(generateBadge, [{}]), 10)];
 const getBadgeInstance = async (objectKey: string) => {
     const Bucket = process.env.REGISTRY_BUCKET;
     if (!Bucket) {
-        throw new Error("Bucket Name is Required");
+        throw new Error(Errors.MISSING_BUCKET_NAME);
     }
     try {
         const { Body } = await s3.getObject({ Bucket, Key: objectKey }).promise();
@@ -20,7 +20,6 @@ const getBadgeInstance = async (objectKey: string) => {
         const badge = JSON.parse(json);
         return badge;
     } catch (error) {
-        console.log(error);
         return null;
     }
 };
@@ -28,7 +27,7 @@ const getBadgeInstance = async (objectKey: string) => {
 const listBadges = async ({ organizationId }: { organizationId?: string }) => {
     const Bucket = process.env.REGISTRY_BUCKET;
     if (!Bucket) {
-        throw new Error("Bucket Name is Required");
+        throw new Error(Errors.MISSING_BUCKET_NAME);
     }
     const { NextContinuationToken, CommonPrefixes } = await s3
         .listObjectsV2({

@@ -1,6 +1,7 @@
 import AWS from "aws-sdk"; // eslint-disable-line import/no-extraneous-dependencies
 import {
   PublicBadgesEventType as EV,
+  Errors,
   OrganizationRegistrationRequestedEvent,
   PublicBadgesHandler,
 } from "@public-badges/types";
@@ -19,7 +20,7 @@ const updateRegistry: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
     case EV.ORGANIZATION_REGISTRATION_REQUESTED: {
       const TableName = process.env.REGISTRY_LOOKUP_TABLE;
       if (!TableName) {
-        throw new Error("The table name name must be set in your environment");
+        throw new Error(Errors.MISSING_TABLE_NAME);
       }
       const Item = {
         identityType: "domainName",

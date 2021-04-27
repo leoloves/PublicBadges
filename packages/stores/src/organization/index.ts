@@ -1,4 +1,8 @@
-import {RegistryStore, OrganizationStatus} from "@public-badges/types";
+import {
+  RegistryStore,
+  OrganizationStatus,
+  Errors,
+} from "@public-badges/types";
 import AWS from "aws-sdk";
 
 const ddb = new AWS.DynamoDB.DocumentClient();
@@ -7,7 +11,7 @@ const s3 = new AWS.S3();
 const getOrganization = async (objectKey: string) => {
   const Bucket = process.env.REGISTRY_BUCKET;
   if (!Bucket) {
-    throw new Error("Bucket Name is Required");
+    throw new Error(Errors.MISSING_BUCKET_NAME);
   }
   const {Body} = await s3.getObject({Bucket, Key: objectKey}).promise();
   const json = Body ? Body.toString("utf-8") : "{}";
@@ -18,7 +22,7 @@ const getOrganization = async (objectKey: string) => {
 const listOrganizations = async () => {
   const Bucket = process.env.REGISTRY_BUCKET;
   if (!Bucket) {
-    throw new Error("Bucket Name is Required");
+    throw new Error(Errors.MISSING_BUCKET_NAME);
   }
   const {NextContinuationToken, CommonPrefixes} = await s3
     .listObjectsV2({Bucket, MaxKeys: 10, Delimiter: "/"})
@@ -37,7 +41,7 @@ const listOrganizations = async () => {
 const getOrganizationId = async (domainName: string) => {
   const TableName = process.env.REGISTRY_LOOKUP_TABLE;
   if (!TableName) {
-    throw new Error("TableName is Required");
+    throw new Error(Errors.MISSING_TABLE_NAME);
   }
   const Key = {
     identityType: "domainName",
@@ -52,7 +56,7 @@ const queryOrganizationStatus = async (status: OrganizationStatus) => {
   const IndexName = process.env.ORGANIZATION_STATUS_INDEX;
 
   if (!TableName || !IndexName) {
-    throw new Error("TableName is Required");
+    throw new Error(Errors.MISSING_TABLE_NAME);
   }
 
   const params = {
