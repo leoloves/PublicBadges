@@ -69,7 +69,7 @@ module "public-spaces-registry" {
 module "public-spaces-badges" {
   source           = "./infra/badges"
   environment_name = local.environment_name
-  SECRET_KEY       = var.BADGES_SECRET_KEY
+  secret_key       = VAR.badges_secret_key
   project_prefix   = "public-badges"
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
