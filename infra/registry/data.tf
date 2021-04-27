@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "registry_bucket_read_access" {
     ]
 
     resources = [
-      "${aws_s3_bucket.registry_bucket.arn}",
+      aws_s3_bucket.registry_bucket.arn,
       "${aws_s3_bucket.registry_bucket.arn}/*"
     ]
   }
@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "registry_bucket_write_access" {
     ]
 
     resources = [
-      "${aws_s3_bucket.registry_bucket.arn}",
+      aws_s3_bucket.registry_bucket.arn,
       "${aws_s3_bucket.registry_bucket.arn}/*"
     ]
   }
