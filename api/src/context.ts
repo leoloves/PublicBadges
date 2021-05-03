@@ -1,9 +1,8 @@
-import * as allStores from "@public-badges/stores";
 import {ApolloContext} from "@public-badges/types";
+import * as stores from "@public-badges/stores";
+import {eventBus} from "@public-badges/adapters";
 
-const {eventBus, ...stores} = allStores;
-
-const xcontext: (args: {event: any; context: any}) => ApolloContext = ({
+const apolloContext: (args: {event: any; context: any}) => ApolloContext = ({
   event,
   context,
 }) => {
@@ -15,4 +14,4 @@ const xcontext: (args: {event: any; context: any}) => ApolloContext = ({
   };
 };
 
-export default xcontext;
+export default apolloContext;
