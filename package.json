@@ -14,7 +14,8 @@
     "build:schema": "yarn workspace @public-badges/graphql-schema build",
     "build:types": "yarn workspace @public-badges/types build",
     "build:stores": "yarn workspace @public-badges/stores build",
-    "build:packages": "yarn build:schema && yarn build:types && yarn build:stores",
+    "build:adapters": "yarn workspace @public-badges/adapters build",
+    "build:packages": "yarn build:schema && yarn build:types && yarn build:adapters && yarn build:stores",
     "build:api": "yarn workspace @public-badges/api build",
     "build:registryFlow": "yarn workspace @public-badges/registry-flow build",
     "build:badgesFlow": "yarn workspace @public-badges/badges-flow build",
@@ -50,7 +51,8 @@
     "registryFlow",
     "packages/graphql-schema",
     "packages/types",
-    "packages/stores"
+    "packages/stores",
+    "packages/adapters"
   ],
   "dependencies": {}
 }

@@ -29,6 +29,7 @@
     "@public-badges/graphql-schema": "*",
     "@public-badges/stores": "*",
     "@public-badges/types": "*",
+    "@public-badges/adapters": "*",
     "apollo-server-lambda": "^2.22.2",
     "aws-sdk": "^2.885.0",
     "graphql": "^15.5.0",
