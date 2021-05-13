@@ -52,7 +52,7 @@ input OrganizationInput {
   domainName: URL!
 }
 
-input OrganizationInput {
-  domainName: URL!
+input OrganizationValidation {
+  organizationId: GUID!
   validationToken: GUID!
 }
