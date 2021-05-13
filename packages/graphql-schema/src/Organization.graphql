@@ -54,5 +54,5 @@ input OrganizationInput {
 
 input OrganizationValidation {
   organizationId: GUID!
-  validationToken: GUID!
+  approvalToken: GUID!
 }
