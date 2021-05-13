@@ -13,7 +13,7 @@ interface Organization {
   urls: [URL]
 }
 
-input ContactInput{
+input ContactInput {
   name: String!
   email: EmailAddress!
 }
@@ -22,7 +22,6 @@ type Contact {
   name: String!
   email: EmailAddress!
 }
-
 
 type PendingOrganization implements Organization {
   organizationId: GUID!
@@ -51,4 +50,9 @@ input OrganizationInput {
   contact: ContactInput!
   admin: ContactInput!
   domainName: URL!
+}
+
+input OrganizationInput {
+  domainName: URL!
+  validationToken: GUID!
 }
