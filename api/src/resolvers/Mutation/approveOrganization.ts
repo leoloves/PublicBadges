@@ -6,23 +6,24 @@ const approveOrganization: MutationResolvers["approveOrganization"] = async (
 ) => {
     const { organizationId, approvalToken } = input;
 
+    console.log(input);
     console.log("ID:", organizationId);
     console.log("TOKEN:", approvalToken);
 
     /***
-        return eventBus.put({
-          detailType: ORGANIZATION_REGISTRATION_REQUESTED,
-          detail: {
-            organizationId,
-            status,
-            name,
-            contact,
-            admin,
-            domainName,
-            urls: [domainName],
-          },
-        }) as Promise<Organization>;
-        ***/
+          return eventBus.put({
+            detailType: ORGANIZATION_REGISTRATION_REQUESTED,
+            detail: {
+              organizationId,
+              status,
+              name,
+              contact,
+              admin,
+              domainName,
+              urls: [domainName],
+            },
+          }) as Promise<Organization>;
+          ***/
 };
 
 export default approveOrganization;
