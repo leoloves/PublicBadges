@@ -52,7 +52,7 @@ const Organization: OrganizationResolvers = {
 const PendingOrganization: PendingOrganizationResolvers = {
   ...Organization,
   approvalToken({approvalToken}) {
-    return null;
+    return approvalToken;
   },
 };
 
