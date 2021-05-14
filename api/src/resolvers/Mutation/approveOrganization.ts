@@ -1,16 +1,17 @@
-import { MutationResolvers } from "@public-badges/types";
+import {MutationResolvers} from "@public-badges/types";
 
 const approveOrganization: MutationResolvers["approveOrganization"] = async (
-    _root,
-    { input }
+  _root,
+  {input},
+  {stores}
 ) => {
-    const { organizationId, approvalToken } = input;
+  const {organizationId} = input;
 
-    console.log(input);
-    console.log("ID:", organizationId);
-    console.log("TOKEN:", approvalToken);
+  const organization = await stores.registry.fetch({organizationId});
+  console.log("TOKEN-INPUT:", input.approvalToken);
+  console.log("TOKEN-STORED:", organization.approvalToken);
 
-    /***
+  /***
           return eventBus.put({
             detailType: ORGANIZATION_REGISTRATION_REQUESTED,
             detail: {

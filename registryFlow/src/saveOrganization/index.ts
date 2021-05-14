@@ -28,6 +28,7 @@ const saveOrganization: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
     case EV.ORGANIZATION_REGISTRATION_REQUESTED: {
       const organization: PendingOrganization = {
         ...detail,
+        approvalToken: "913b73d2-0470-4cd9-9b52-7cc39e7b80b9",
         status: OrganizationStatus.Pending,
       };
       await putOrganization(id, organization);

@@ -15,6 +15,7 @@
     "build:types": "yarn workspace @public-badges/types build",
     "build:stores": "yarn workspace @public-badges/stores build",
     "build:adapters": "yarn workspace @public-badges/adapters build",
+    "prebuild:packages": "yarn codegen",
     "build:packages": "yarn build:schema && yarn build:types && yarn build:adapters && yarn build:stores",
     "build:api": "yarn workspace @public-badges/api build",
     "build:registryFlow": "yarn workspace @public-badges/registry-flow build",
