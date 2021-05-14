@@ -43,7 +43,7 @@ export type ApprovedPublicBadge = PublicBadge & {
   narrative: Scalars['String'];
   recipientId: Scalars['ID'];
   evidence: Array<Proof>;
-  recipient: Organization;
+  recipient: ApprovedOrganization;
 };
 
 export type Contact = {
@@ -185,7 +185,7 @@ export type PendingPublicBadge = PublicBadge & {
   description: Scalars['String'];
   narrative: Scalars['String'];
   recipientId: Scalars['ID'];
-  recipient: Organization;
+  recipient: ApprovedOrganization;
 };
 
 export type Proof = {
@@ -206,7 +206,7 @@ export type PublicBadge = {
   description: Scalars['String'];
   narrative: Scalars['String'];
   recipientId: Scalars['ID'];
-  recipient: Organization;
+  recipient: ApprovedOrganization;
 };
 
 export type PublicBadgeInput = {
@@ -249,7 +249,7 @@ export type RejectedPublicBadge = PublicBadge & {
   narrative: Scalars['String'];
   recipientId: Scalars['ID'];
   evidence: Array<Proof>;
-  recipient: Organization;
+  recipient: ApprovedOrganization;
 };
 
 export type Scenario = {
@@ -271,7 +271,7 @@ export type SignedPublicBadge = PublicBadge & {
   issuedOn: Scalars['String'];
   expires: Scalars['String'];
   artifact: OpenBadgeArtifact;
-  recipient: Organization;
+  recipient: ApprovedOrganization;
 };
 
 
@@ -486,7 +486,7 @@ export type ApprovedPublicBadgeResolvers<ContextType = ApolloContext, ParentType
   narrative: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   recipientId: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   evidence: Resolver<Array<ResolversTypes['Proof']>, ParentType, ContextType>;
-  recipient: Resolver<ResolversTypes['Organization'], ParentType, ContextType>;
+  recipient: Resolver<ResolversTypes['ApprovedOrganization'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -606,7 +606,7 @@ export type PendingPublicBadgeResolvers<ContextType = ApolloContext, ParentType 
   description: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   narrative: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   recipientId: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  recipient: Resolver<ResolversTypes['Organization'], ParentType, ContextType>;
+  recipient: Resolver<ResolversTypes['ApprovedOrganization'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -630,7 +630,7 @@ export type PublicBadgeResolvers<ContextType = ApolloContext, ParentType extends
   description: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   narrative: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   recipientId: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  recipient: Resolver<ResolversTypes['Organization'], ParentType, ContextType>;
+  recipient: Resolver<ResolversTypes['ApprovedOrganization'], ParentType, ContextType>;
 }>;
 
 export type QueryResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
@@ -649,7 +649,7 @@ export type RejectedPublicBadgeResolvers<ContextType = ApolloContext, ParentType
   narrative: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   recipientId: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   evidence: Resolver<Array<ResolversTypes['Proof']>, ParentType, ContextType>;
-  recipient: Resolver<ResolversTypes['Organization'], ParentType, ContextType>;
+  recipient: Resolver<ResolversTypes['ApprovedOrganization'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -673,7 +673,7 @@ export type SignedPublicBadgeResolvers<ContextType = ApolloContext, ParentType e
   issuedOn: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   expires: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   artifact: Resolver<ResolversTypes['OpenBadgeArtifact'], ParentType, ContextType>;
-  recipient: Resolver<ResolversTypes['Organization'], ParentType, ContextType>;
+  recipient: Resolver<ResolversTypes['ApprovedOrganization'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 

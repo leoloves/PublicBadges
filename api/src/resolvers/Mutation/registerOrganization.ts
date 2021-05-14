@@ -2,7 +2,7 @@ import {
   MutationResolvers,
   OrganizationStatus,
   PublicBadgesEventType,
-  Organization,
+  PendingOrganization,
 } from "@public-badges/types";
 import {v1 as uuid} from "uuid";
 import {timeout} from "../helpers";
@@ -25,10 +25,12 @@ const registerOrganization: MutationResolvers["registerOrganization"] = async (
   }
   const organizationId = uuid();
   const status = OrganizationStatus.Pending;
+  const approvalToken = "913b73d2-0470-4cd9-9b52-7cc39e7b80b9";
 
   return eventBus.put({
     detailType: ORGANIZATION_REGISTRATION_REQUESTED,
     detail: {
+      approvalToken,
       organizationId,
       status,
       name,
@@ -37,7 +39,7 @@ const registerOrganization: MutationResolvers["registerOrganization"] = async (
       domainName,
       urls: [domainName],
     },
-  }) as Promise<Organization>;
+  }) as Promise<PendingOrganization>;
 };
 
 export default registerOrganization;

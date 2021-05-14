@@ -364,8 +364,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "INTERFACE",
-                "name": "Organization",
+                "kind": "OBJECT",
+                "name": "ApprovedOrganization",
                 "ofType": null
               }
             },
@@ -1730,8 +1730,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "INTERFACE",
-                "name": "Organization",
+                "kind": "OBJECT",
+                "name": "ApprovedOrganization",
                 "ofType": null
               }
             },
@@ -2010,8 +2010,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "INTERFACE",
-                "name": "Organization",
+                "kind": "OBJECT",
+                "name": "ApprovedOrganization",
                 "ofType": null
               }
             },
@@ -2405,8 +2405,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "INTERFACE",
-                "name": "Organization",
+                "kind": "OBJECT",
+                "name": "ApprovedOrganization",
                 "ofType": null
               }
             },
@@ -2709,8 +2709,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "INTERFACE",
-                "name": "Organization",
+                "kind": "OBJECT",
+                "name": "ApprovedOrganization",
                 "ofType": null
               }
             },

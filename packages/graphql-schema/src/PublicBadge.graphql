@@ -23,7 +23,7 @@ interface PublicBadge {
   description: String!
   narrative: String!
   recipientId: ID!
-  recipient: Organization!
+  recipient: ApprovedOrganization!
 }
 
 type PendingPublicBadge implements PublicBadge {
@@ -36,7 +36,7 @@ type PendingPublicBadge implements PublicBadge {
   description: String!
   narrative: String!
   recipientId: ID!
-  recipient: Organization!
+  recipient: ApprovedOrganization!
 }
 
 type ApprovedPublicBadge implements PublicBadge {
@@ -50,7 +50,7 @@ type ApprovedPublicBadge implements PublicBadge {
   narrative: String!
   recipientId: ID!
   evidence: [Proof!]!
-  recipient: Organization!
+  recipient: ApprovedOrganization!
 }
 
 type RejectedPublicBadge implements PublicBadge {
@@ -64,7 +64,7 @@ type RejectedPublicBadge implements PublicBadge {
   narrative: String!
   recipientId: ID!
   evidence: [Proof!]!
-  recipient: Organization!
+  recipient: ApprovedOrganization!
 }
 
 type SignedPublicBadge implements PublicBadge {
@@ -81,7 +81,7 @@ type SignedPublicBadge implements PublicBadge {
   issuedOn: String!
   expires: String!
   artifact: OpenBadgeArtifact!
-  recipient: Organization!
+  recipient: ApprovedOrganization!
 }
 
 input PublicBadgeInput {

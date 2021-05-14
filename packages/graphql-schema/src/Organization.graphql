@@ -25,7 +25,7 @@ type Contact {
 
 type PendingOrganization implements Organization {
   organizationId: GUID!
-  approvalToken: GUID!
+  approvalToken: GUID
   status: OrganizationStatus!
   name: String!
   contact: Contact!
