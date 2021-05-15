@@ -3,6 +3,7 @@ import {
   OrganizationStatus,
   PublicBadgesEventType,
   PendingOrganization,
+  Errors,
 } from "@public-badges/types";
 import {v4 as uuid} from "uuid";
 import {timeout} from "../helpers";
@@ -21,7 +22,7 @@ const registerOrganization: MutationResolvers["registerOrganization"] = async (
   const organization = await stores.registry.fetch({domainName});
 
   if (organization) {
-    throw new Error("ORG ALREADY EXISTS");
+    throw new Error(Errors.DUPLICATE_ORGANIZATION_REGISTRATION);
   }
   const organizationId = uuid();
   const status = OrganizationStatus.Pending;

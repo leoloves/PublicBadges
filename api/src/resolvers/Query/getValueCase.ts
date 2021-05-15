@@ -1,4 +1,4 @@
-import {QueryResolvers} from "@public-badges/types";
+import {Errors, QueryResolvers} from "@public-badges/types";
 
 const getValueCase: QueryResolvers["getValueCase"] = async (
   _root,
@@ -10,7 +10,7 @@ const getValueCase: QueryResolvers["getValueCase"] = async (
   const valueCase = await stores.valueCase.fetch({valueCaseId, language});
 
   if (!valueCase) {
-    throw new Error("invalid badge, no corresponding value case");
+    throw new Error(Errors.MISSING_ORGANIZATION);
   }
   return valueCase;
 };

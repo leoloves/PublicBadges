@@ -143,3 +143,4 @@ terraform.rco
 .terraform.lock.hcl
 
 /dist
+graphql.schema.json

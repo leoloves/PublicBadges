@@ -1,4 +1,4 @@
-import {QueryResolvers, Language} from "@public-badges/types";
+import {QueryResolvers, Language, Errors} from "@public-badges/types";
 
 const getAllBadges: QueryResolvers["getAllBadges"] = async (
   _root,
@@ -15,7 +15,7 @@ const getAllBadges: QueryResolvers["getAllBadges"] = async (
   const organization = await stores.registry.fetch({domainName});
 
   if (!organization) {
-    throw new Error("NOT A KNOWN ORGANIZATION FOR NOW");
+    throw new Error(Errors.UNKNOWN_ORGANIZATION);
   }
 
   const organizationId = organization.organizationId;

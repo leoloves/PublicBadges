@@ -80,7 +80,7 @@ export type Localization = {
 export type Mutation = {
   applyForBadge: Maybe<PublicBadge>;
   registerOrganization: Maybe<PendingOrganization>;
-  approveOrganization: Maybe<Organization>;
+  approveOrganization: Maybe<PendingOrganization>;
 };
 
 
@@ -166,7 +166,7 @@ export type OrganizationValidation = {
 
 export type PendingOrganization = Organization & {
   organizationId: Scalars['GUID'];
-  approvalToken: Scalars['GUID'];
+  approvalToken: Maybe<Scalars['GUID']>;
   status: OrganizationStatus;
   name: Scalars['String'];
   contact: Contact;
@@ -525,7 +525,7 @@ export type LocalizationResolvers<ContextType = ApolloContext, ParentType extend
 export type MutationResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   applyForBadge: Resolver<Maybe<ResolversTypes['PublicBadge']>, ParentType, ContextType, RequireFields<MutationApplyForBadgeArgs, 'input'>>;
   registerOrganization: Resolver<Maybe<ResolversTypes['PendingOrganization']>, ParentType, ContextType, RequireFields<MutationRegisterOrganizationArgs, 'input'>>;
-  approveOrganization: Resolver<Maybe<ResolversTypes['Organization']>, ParentType, ContextType, RequireFields<MutationApproveOrganizationArgs, 'input'>>;
+  approveOrganization: Resolver<Maybe<ResolversTypes['PendingOrganization']>, ParentType, ContextType, RequireFields<MutationApproveOrganizationArgs, 'input'>>;
 }>;
 
 export type OpenBadgeResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['OpenBadge'] = ResolversParentTypes['OpenBadge']> = ResolversObject<{
@@ -586,7 +586,7 @@ export type OrganizationResolvers<ContextType = ApolloContext, ParentType extend
 
 export type PendingOrganizationResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['PendingOrganization'] = ResolversParentTypes['PendingOrganization']> = ResolversObject<{
   organizationId: Resolver<ResolversTypes['GUID'], ParentType, ContextType>;
-  approvalToken: Resolver<ResolversTypes['GUID'], ParentType, ContextType>;
+  approvalToken: Resolver<Maybe<ResolversTypes['GUID']>, ParentType, ContextType>;
   status: Resolver<ResolversTypes['OrganizationStatus'], ParentType, ContextType>;
   name: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   contact: Resolver<ResolversTypes['Contact'], ParentType, ContextType>;

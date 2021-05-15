@@ -726,8 +726,8 @@
               }
             ],
             "type": {
-              "kind": "INTERFACE",
-              "name": "Organization",
+              "kind": "OBJECT",
+              "name": "PendingOrganization",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1450,13 +1450,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "GUID",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "GUID",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
