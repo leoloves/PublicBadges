@@ -25,7 +25,7 @@ const registerOrganization: MutationResolvers["registerOrganization"] = async (
   }
   const organizationId = uuid();
   const status = OrganizationStatus.Pending;
-  const approvalToken = "913b73d2-0470-4cd9-9b52-7cc39e7b80b9";
+  const approvalToken = uuid();
 
   return eventBus.put({
     detailType: ORGANIZATION_REGISTRATION_REQUESTED,
