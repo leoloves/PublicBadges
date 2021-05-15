@@ -17,7 +17,7 @@ resource "aws_iam_policy" "registry_lookup_table_access" {
 }
 
 resource "aws_iam_policy" "email_send_policy" {
-  name = "{local.name}-email-send-policy"
+  name = "${local.name}-email-send-policy"
   path   = "/"
   policy = data.aws_iam_policy_document.email_send_policy.json
 }
