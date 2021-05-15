@@ -1404,6 +1404,22 @@
             "deprecationReason": null
           },
           {
+            "name": "approver",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "EmailAddress",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "approvalToken",
             "description": null,
             "type": {

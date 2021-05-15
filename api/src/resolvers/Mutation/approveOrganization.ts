@@ -13,16 +13,28 @@ const approveOrganization: MutationResolvers["approveOrganization"] = async (
   {input},
   {stores, eventBus}
 ) => {
-  const {organizationId} = input;
+  const {organizationId, approvalToken: inputToken, approver} = input;
+  const approversWhiteList = ["leonieke@publicspaces.net"];
 
-  const {
-    approvalToken: storedToken,
-    ...organization
-  } = (await stores.registry.fetch({
+  const rawOrganization = (await stores.registry.fetch({
     organizationId,
-  })) as PendingOrganization;
+  })) as PendingOrganization | ApprovedOrganization;
 
-  if (input.approvalToken !== storedToken) {
+  if (!rawOrganization) {
+    throw new Error(Errors.MISSING_ORGANIZATION);
+  }
+
+  if (rawOrganization.status === OrganizationStatus.Approved) {
+    throw new Error(Errors.DUPLICATE_ORGANIZATION_APPROVAL);
+  }
+
+  if (!approversWhiteList.includes(approver)) {
+    throw new Error(Errors.INVALID_APPROVER);
+  }
+
+  const {approvalToken: storedToken, ...organization} = rawOrganization;
+
+  if (inputToken !== storedToken) {
     throw new Error(Errors.INVALID_APPROVAL_TOKEN);
   }
 

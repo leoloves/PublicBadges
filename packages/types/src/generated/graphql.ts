@@ -161,6 +161,7 @@ export enum OrganizationStatus {
 
 export type OrganizationValidation = {
   organizationId: Scalars['GUID'];
+  approver: Scalars['EmailAddress'];
   approvalToken: Scalars['GUID'];
 };
 
