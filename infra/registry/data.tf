@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "email_send_policy" {
       "ses:SendEmail",
       "ses:SendRawEmail"
     ]
-    resources = "*"
+    resources = ["*"]
   }
 }
 
