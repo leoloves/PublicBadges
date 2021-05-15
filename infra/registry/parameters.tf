@@ -21,3 +21,9 @@ resource "aws_ssm_parameter" "registry_role" {
   type        = "SecureString"
   value       = aws_iam_role.registry_role.arn
 }
+
+resource "aws_ssm_parameter" "registry_approver_email" {
+  name        = "${local.parameter_prefix}/approver_email"
+  type        = "SecureString"
+  value       = var.approver_email
+}

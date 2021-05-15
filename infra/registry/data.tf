@@ -43,3 +43,13 @@ data "aws_iam_policy_document" "registry_bucket_write_access" {
   }
 }
 
+data "aws_iam_policy_document" "email_send_policy" {
+  statement {
+    actions = [
+      "ses:SendEmail",
+      "ses:SendRawEmail"
+    ]
+    resources = "*"
+  }
+}
+
