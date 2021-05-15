@@ -26,7 +26,7 @@ const prepareOpenBadgeArtifact: PublicBadgesHandler<
         organizationId: recipientId,
       });
       if (!organization) {
-        throw new Error(Errors.MISSING_ORGANIZATION);
+        throw new Error(Errors.UNKNOWN_ORGANIZATION);
       }
       const valueCase = await valueCaseStore.fetch({
         valueCaseId,
