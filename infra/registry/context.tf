@@ -36,10 +36,6 @@ output "read_registry_lookup_table_policy" {
   value = aws_iam_policy.registry_lookup_table_access.arn
 }
 
-output "read_registry_lookup_table_policy" {
-  value = aws_iam_policy.registry_lookup_table_access.arn
-}
-
 output "registry_email_send_policy" {
   value = aws_iam_policy.email_send_policy.arn
 }
