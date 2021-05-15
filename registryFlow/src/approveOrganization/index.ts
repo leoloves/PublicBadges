@@ -1,12 +1,11 @@
 import {
   PublicBadgesEventType as EV,
   OrganizationApprovalRequestedEvent,
-  OrganizationApprovalDelayedEvent,
   PublicBadgesHandler,
 } from "@public-badges/types";
 
 export type InputEvent = OrganizationApprovalRequestedEvent;
-export type OutputEvent = OrganizationApprovalDelayedEvent;
+export type OutputEvent = null;
 
 const approveOrganization: PublicBadgesHandler<
   InputEvent,
@@ -14,10 +13,8 @@ const approveOrganization: PublicBadgesHandler<
 > = async ({detailType, detail}) => {
   switch (detailType) {
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
-      return {
-        detailType: EV.ORGANIZATION_APPROVAL_DELAYED,
-        detail,
-      };
+      console.log(detail);
+      return null;
     }
   }
 };

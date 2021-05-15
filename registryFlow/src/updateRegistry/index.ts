@@ -3,10 +3,13 @@ import {
   PublicBadgesEventType as EV,
   Errors,
   OrganizationRegistrationRequestedEvent,
+  OrganizationApprovalAcceptedEvent,
   PublicBadgesHandler,
 } from "@public-badges/types";
 
-export type InputEvent = OrganizationRegistrationRequestedEvent;
+export type InputEvent =
+  | OrganizationRegistrationRequestedEvent
+  | OrganizationApprovalAcceptedEvent;
 export type OutputEvent = null;
 
 const ddb = new AWS.DynamoDB.DocumentClient();
@@ -17,6 +20,7 @@ const updateRegistry: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
 }) => {
   const {organizationId, domainName, status} = detail;
   switch (detailType) {
+    case EV.ORGANIZATION_APPROVAL_ACCEPTED:
     case EV.ORGANIZATION_REGISTRATION_REQUESTED: {
       const TableName = process.env.REGISTRY_LOOKUP_TABLE;
       if (!TableName) {
