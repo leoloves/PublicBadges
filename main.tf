@@ -66,7 +66,7 @@ module "public-spaces-registry" {
     module.public-spaces-registry.read_registry_bucket_policy,
     module.public-spaces-registry.write_registry_bucket_policy,
     module.public-spaces-registry.read_registry_lookup_table_policy,
-    module.public-spaces-registry.email_send_policy,
+    module.public-spaces-registry.registry_email_send_policy,
     module.public-spaces-shared.write_event_bus_policy,
     local.lambda_basic_execution_role
   ]
