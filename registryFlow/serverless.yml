@@ -6,6 +6,7 @@ plugins:
 custom:
   parameter_prefix: public-badges/${opt:stage}
   event_bus: ${ssm:/${self:custom.parameter_prefix}/shared/event_bus}
+  approver_email: ${ssm:/${self:custom.parameter_prefix}/registry/approver_email}
   role: ${ssm:/${self:custom.parameter_prefix}/registry/role}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
@@ -53,6 +54,7 @@ functions:
             detail-type:
               - ORGANIZATION_APPROVAL_REQUESTED
     environment:
+      APPROVER_EMAIL: ${self:custom.approver_email}
       HANDLER_NAME: ${self:custom.approve_organization}
       EVENT_BUS_NAME: ${self:custom.event_bus}
   updateRegistry:
