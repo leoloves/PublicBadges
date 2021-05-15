@@ -3,7 +3,7 @@ variable "TFC_WORKSPACE_NAME" {
   default = ""
 }
 variable "APPROVER_EMAIL" {
-  type    = string
+  type = string
 }
 
 
