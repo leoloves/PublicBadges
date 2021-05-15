@@ -4,7 +4,7 @@ import {
   PublicBadgesEventType,
   PendingOrganization,
 } from "@public-badges/types";
-import {v1 as uuid} from "uuid";
+import {v4 as uuid} from "uuid";
 import {timeout} from "../helpers";
 
 const {ORGANIZATION_REGISTRATION_REQUESTED} = PublicBadgesEventType;

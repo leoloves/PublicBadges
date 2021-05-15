@@ -16,7 +16,7 @@ import {
 } from "@public-badges/types";
 import {titleCase} from "voca";
 import {registry, valueCase as valueCaseStore} from "@public-badges/stores";
-import {v1 as uuid} from "uuid";
+import {v4 as uuid} from "uuid";
 import {slugify} from "voca";
 
 export type InputEvent = BadgeIssuanceRequestedEvent;
