@@ -80,7 +80,7 @@ export type Localization = {
 export type Mutation = {
   applyForBadge: Maybe<PublicBadge>;
   registerOrganization: Maybe<PendingOrganization>;
-  approveOrganization: Maybe<PendingOrganization>;
+  approveOrganization: Maybe<ApprovedOrganization>;
 };
 
 
@@ -525,7 +525,7 @@ export type LocalizationResolvers<ContextType = ApolloContext, ParentType extend
 export type MutationResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   applyForBadge: Resolver<Maybe<ResolversTypes['PublicBadge']>, ParentType, ContextType, RequireFields<MutationApplyForBadgeArgs, 'input'>>;
   registerOrganization: Resolver<Maybe<ResolversTypes['PendingOrganization']>, ParentType, ContextType, RequireFields<MutationRegisterOrganizationArgs, 'input'>>;
-  approveOrganization: Resolver<Maybe<ResolversTypes['PendingOrganization']>, ParentType, ContextType, RequireFields<MutationApproveOrganizationArgs, 'input'>>;
+  approveOrganization: Resolver<Maybe<ResolversTypes['ApprovedOrganization']>, ParentType, ContextType, RequireFields<MutationApproveOrganizationArgs, 'input'>>;
 }>;
 
 export type OpenBadgeResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['OpenBadge'] = ResolversParentTypes['OpenBadge']> = ResolversObject<{

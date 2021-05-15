@@ -1,6 +1,8 @@
 import {
   Errors,
   MutationResolvers,
+  OrganizationStatus,
+  ApprovedOrganization,
   PendingOrganization,
   PublicBadgesEventType,
 } from "@public-badges/types";
@@ -13,18 +15,26 @@ const approveOrganization: MutationResolvers["approveOrganization"] = async (
 ) => {
   const {organizationId} = input;
 
-  const organization = (await stores.registry.fetch({
+  const {
+    approvalToken: storedToken,
+    ...organization
+  } = (await stores.registry.fetch({
     organizationId,
   })) as PendingOrganization;
 
-  if (input.approvalToken !== organization.approvalToken) {
+  if (input.approvalToken !== storedToken) {
     throw new Error(Errors.INVALID_APPROVAL_TOKEN);
   }
 
   return eventBus.put({
     detailType: ORGANIZATION_APPROVAL_ACCEPTED,
-    detail: organization,
-  }) as Promise<PendingOrganization>;
+    detail: {
+      ...organization,
+      status: OrganizationStatus.Approved,
+      approvedBy: "leonieke@publicspaces.net",
+      approvedOn: `${Date.now()}`,
+    },
+  }) as Promise<ApprovedOrganization>;
 };
 
 export default approveOrganization;

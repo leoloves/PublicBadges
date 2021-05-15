@@ -1,8 +1,8 @@
-import { PublicBadgesEventType } from "./eventTypes";
+import {PublicBadgesEventType} from "./eventTypes";
 import {
   PublicBadgesEventPayload,
   UnsignedOpenBadgeResponse,
-  SignedOpenBadgeResponse
+  SignedOpenBadgeResponse,
 } from "./payload";
 
 import {
@@ -11,7 +11,7 @@ import {
   ApprovedOrganization,
   PublicBadge,
   ApprovedPublicBadge,
-  RejectedPublicBadge
+  RejectedPublicBadge,
 } from "../models";
 
 export interface PBEvent extends Event {
@@ -31,7 +31,7 @@ export interface OrganizationApprovalRequestedEvent extends PBEvent {
 
 export interface OrganizationApprovalAcceptedEvent extends PBEvent {
   detailType: PublicBadgesEventType.ORGANIZATION_APPROVAL_ACCEPTED;
-  detail: PendingOrganization;
+  detail: ApprovedOrganization;
 }
 export interface OrganizationApprovalDelayedEvent extends PBEvent {
   detailType: PublicBadgesEventType.ORGANIZATION_APPROVAL_DELAYED;

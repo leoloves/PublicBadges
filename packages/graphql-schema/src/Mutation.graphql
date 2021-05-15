@@ -1,5 +1,5 @@
 type Mutation {
   applyForBadge(input: PublicBadgeInput!): PublicBadge
   registerOrganization(input: OrganizationInput!): PendingOrganization
-  approveOrganization(input: OrganizationValidation!): PendingOrganization
+  approveOrganization(input: OrganizationValidation!): ApprovedOrganization
 }

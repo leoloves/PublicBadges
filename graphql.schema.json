@@ -727,7 +727,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "PendingOrganization",
+              "name": "ApprovedOrganization",
               "ofType": null
             },
             "isDeprecated": false,
