@@ -6,7 +6,7 @@ const getValueCase: QueryResolvers["getValueCase"] = async (
   {stores}
 ) => {
   const valueCaseId = args.valueCaseId;
-  const language = args?.language;
+  const language = args.language;
   const valueCase = await stores.valueCase.fetch({valueCaseId, language});
 
   if (!valueCase) {

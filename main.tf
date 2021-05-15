@@ -2,6 +2,10 @@ variable "TFC_WORKSPACE_NAME" {
   type    = string
   default = ""
 }
+variable "APPROVER_EMAIL" {
+  type    = string
+}
+
 
 variable "BADGES_SECRET_KEY" {
   type = string
@@ -57,6 +61,7 @@ module "public-spaces-registry" {
   source           = "./infra/registry"
   environment_name = local.environment_name
   project_prefix   = "public-badges"
+  approver_email   = var.APPROVER_EMAIL
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
     module.public-spaces-registry.write_registry_bucket_policy,

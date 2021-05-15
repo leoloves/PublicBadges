@@ -2,6 +2,10 @@ variable "environment_name" {
   type = string
 }
 
+variable "approver_email" {
+  type = string
+}
+
 variable "project_prefix" {
   type = string
 }

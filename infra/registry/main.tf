@@ -63,6 +63,10 @@ data "aws_iam_policy_document" "lambda_role_assume_role_policy" {
   }
 }
 
+resource "aws_ses_email_identity" "approver" {
+  email = var.approver_email
+}
+
 resource "aws_iam_role" "registry_role" {
   name                = local.role
   assume_role_policy = data.aws_iam_policy_document.lambda_role_assume_role_policy.json
