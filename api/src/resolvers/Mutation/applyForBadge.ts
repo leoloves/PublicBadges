@@ -22,7 +22,7 @@ const applyForBadge: MutationResolvers["applyForBadge"] = async (
   await timeout(500);
   const organization = await stores.registry.fetch({domainName});
   if (!organization) {
-    throw new Error(Errors.MISSING_ORGANIZATION);
+    throw new Error(Errors.UNKNOWN_ORGANIZATION);
   }
 
   if (organization.status === OrganizationStatus.Pending) {

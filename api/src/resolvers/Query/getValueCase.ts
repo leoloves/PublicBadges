@@ -10,7 +10,7 @@ const getValueCase: QueryResolvers["getValueCase"] = async (
   const valueCase = await stores.valueCase.fetch({valueCaseId, language});
 
   if (!valueCase) {
-    throw new Error(Errors.MISSING_ORGANIZATION);
+    throw new Error(Errors.MISSING_VALUE_CASE);
   }
   return valueCase;
 };
