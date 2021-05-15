@@ -17,7 +17,7 @@ const approveOrganization: PublicBadgesHandler<
     switch (detailType) {
         case EV.ORGANIZATION_APPROVAL_REQUESTED: {
             const approverEmail = process.env.APPROVER_EMAIL;
-            const recipientEmail = process.env.APPROVER_EMAIL;
+            const recipientEmail = detail.contact.email;
             const params = {
                 Destination: {
                     ToAddresses: [recipientEmail],
