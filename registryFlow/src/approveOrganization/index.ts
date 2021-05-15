@@ -16,9 +16,11 @@ const approveOrganization: PublicBadgesHandler<
 > = async ({ detailType, detail }) => {
     switch (detailType) {
         case EV.ORGANIZATION_APPROVAL_REQUESTED: {
+            const approverEmail = process.env.APPROVER_EMAIL;
+            const recipientEmail = process.env.APPROVER_EMAIL;
             const params = {
                 Destination: {
-                    ToAddresses: ["yeehaa123@mac.com"],
+                    ToAddresses: [recipientEmail],
                 },
                 Message: {
                     Body: {
@@ -27,7 +29,7 @@ const approveOrganization: PublicBadgesHandler<
 
                     Subject: { Data: "Test Email" },
                 },
-                Source: process.env.APPROVER_EMAIL,
+                Source: approverEmail,
             };
 
             const response = await ses.sendEmail(params).promise();
