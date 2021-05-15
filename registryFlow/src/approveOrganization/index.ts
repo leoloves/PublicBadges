@@ -27,7 +27,7 @@ const approveOrganization: PublicBadgesHandler<
 
                     Subject: { Data: "Test Email" },
                 },
-                Source: process.env.APPROVAL_EMAIL,
+                Source: process.env.APPROVER_EMAIL,
             };
 
             const response = await ses.sendEmail(params).promise();
