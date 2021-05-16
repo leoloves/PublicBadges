@@ -1,14 +1,52 @@
 import {
   PublicBadgesEventType as EV,
   OrganizationApprovalRequestedEvent,
+  PendingOrganization,
   PublicBadgesHandler,
 } from "@public-badges/types";
 
 import AWS from "aws-sdk";
+import {capitalize} from "voca";
 const ses = new AWS.SES();
 
 export type InputEvent = OrganizationApprovalRequestedEvent;
 export type OutputEvent = null;
+
+const template: (args: {
+  organization: PendingOrganization;
+  approverEmail: string;
+}) => string = ({organization, approverEmail}) => {
+  const {
+    name,
+    domainName,
+    contact,
+    admin,
+    organizationId,
+    approvalToken,
+  } = organization;
+  const inputParams = {organizationId, approvalToken, approverEmail};
+  return `
+  ${capitalize(name)} want to join the PublicSpaces registry.
+
+  They applied with the following information:
+
+  DomainName:
+  ${domainName}
+
+  Contact:
+  ${contact.name}
+  ${contact.email}
+
+  Admin:
+  ${admin.name}
+  ${admin.email}
+
+  If you want to add them to the registry, please confirm using the 'approveOrganization' handler
+  in the graphql playground, using the following input params.
+
+  ${JSON.stringify(inputParams, null, 2)}
+  `;
+};
 
 const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   detailType,
@@ -23,10 +61,14 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
         },
         Message: {
           Body: {
-            Text: {Data: JSON.stringify(detail, null, 2)},
+            Text: {Data: template({organization: detail, approverEmail})},
           },
 
-          Subject: {Data: "Test Email"},
+          Subject: {
+            Data: `${capitalize(
+              detail.name
+            )} applied for the PublicSpaces registry`,
+          },
         },
         Source: approverEmail,
       };
