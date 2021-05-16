@@ -24,7 +24,7 @@ const template: (args: {
     organizationId,
     approvalToken,
   } = organization;
-  const inputParams = {organizationId, approvalToken, approverEmail};
+  const input = {organizationId, approvalToken, approver: approverEmail};
   return `
   ${capitalize(name)} want to join the PublicSpaces registry.
 
@@ -44,7 +44,7 @@ const template: (args: {
   If you want to add them to the registry, please confirm using the 'approveOrganization' handler
   in the graphql playground, using the following input params.
 
-  ${JSON.stringify(inputParams, null, 2)}
+  ${JSON.stringify({input}, null, 2)}
   `;
 };
 
