@@ -35,7 +35,6 @@ functions:
           pattern:
             source:
               - ${self:custom.api}
-              - ${self:custom.approve_organization}
             detail-type: 
              - ORGANIZATION_REGISTRATION_REQUESTED
              - ORGANIZATION_APPROVAL_ACCEPTED
@@ -65,7 +64,6 @@ functions:
           pattern:
             source:
               - ${self:custom.api}
-              - ${self:custom.approve_organization}
             detail-type: 
              - ORGANIZATION_REGISTRATION_REQUESTED
              - ORGANIZATION_APPROVAL_ACCEPTED
