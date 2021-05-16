@@ -5,6 +5,7 @@ plugins:
 custom:
   parameter_prefix: public-badges/${opt:stage}
   event_bus: ${ssm:/${self:custom.parameter_prefix}/shared/event_bus}
+  approver_email: ${ssm:/${self:custom.parameter_prefix}/registry/approver_email}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
   organization-status-index: ${ssm:/${self:custom.parameter_prefix}/registry/indices/organization_status}
@@ -37,6 +38,7 @@ functions:
           method: any
           cors: true
     environment:
+      APPROVER_EMAIL: ${self:custom.approver_email}
       SLS_ENVIRONMENT: ${opt:stage}
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       HANDLER_NAME: ${self:custom.api}
