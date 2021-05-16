@@ -3,6 +3,6 @@ import {wrapServices} from "@public-badges/adapters";
 
 export const {
   saveOrganization,
-  approveOrganization,
+  sendNotifications,
   updateRegistry,
 } = wrapServices(services);

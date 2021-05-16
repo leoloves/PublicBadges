@@ -12,7 +12,7 @@ custom:
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
   function_prefix: public-badges-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
-  approve_organization: ${self:custom.function_prefix}.approve-organization
+  send_notifications: ${self:custom.function_prefix}.send-notifications
   save_organization: ${self:custom.function_prefix}.save-organization
   update_registry_lookup: ${self:custom.function_prefix}-update-registry-lookup
 
@@ -43,8 +43,8 @@ functions:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       EVENT_BUS_NAME: ${self:custom.event_bus}
       HANDLER_NAME: ${self:custom.save_organization}
-  approveOrganization:
-    handler: dist/index.approveOrganization
+  sendNotifications:
+    handler: dist/index.sendNotifications
     events:
       - eventBridge:
           eventBus: ${self:custom.event_bus}
@@ -55,7 +55,7 @@ functions:
               - ORGANIZATION_APPROVAL_REQUESTED
     environment:
       APPROVER_EMAIL: ${self:custom.approver_email}
-      HANDLER_NAME: ${self:custom.approve_organization}
+      HANDLER_NAME: ${self:custom.send_notifications}
       EVENT_BUS_NAME: ${self:custom.event_bus}
   updateRegistry:
     handler: dist/index.updateRegistry

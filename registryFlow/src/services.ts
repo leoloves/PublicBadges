@@ -1,5 +1,5 @@
-import approveOrganization from "./approveOrganization";
+import sendNotifications from "./sendNotifications";
 import saveOrganization from "./saveOrganization";
 import updateRegistry from "./updateRegistry";
 
-export {approveOrganization, saveOrganization, updateRegistry};
+export {sendNotifications, saveOrganization, updateRegistry};
