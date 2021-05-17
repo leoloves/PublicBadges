@@ -24,7 +24,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
         subject: `Your ${capitalize(
           name
         )} Badge Application was updated to ${status}`,
-        body: JSON.stringify(detail, null, 2),
+        body: "PLACEHOLDER",
       });
       return null;
     }
