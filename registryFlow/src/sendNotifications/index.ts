@@ -36,7 +36,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
                 body: arTemplate({ organization, approverEmail }),
             });
             const sendEmail = createMail({
-                recipients: [detail.contact.email],
+                recipients: [detail.contact.email, detail.admin.email],
                 sender,
                 subject: `Your Application for ${organizationName} for the PublicSpaces Registry is Under Consideration`,
                 body: "Test",
@@ -46,7 +46,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
             return null;
         }
         case EV.ORGANIZATION_APPROVED: {
-            const recipients = [detail.contact.email];
+            const recipients = [detail.contact.email, detail.admin.email];
             const body = "Test";
             const subject = `You were accepted to the PublicSpaces Registry`;
             const email = createMail({ recipients, sender, body, subject });
