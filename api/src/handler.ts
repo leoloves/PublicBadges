@@ -20,7 +20,7 @@ const server = new ApolloServer({
     endpoint: `/${environment}/graphql`,
     tabs: [
       {
-        endpoint: `/${environment}/graphql`,
+        endpoint: `/${environment}/approve-organization`,
         query,
       },
     ],
