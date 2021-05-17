@@ -52,6 +52,7 @@ functions:
               - ${self:custom.save_organization}
             detail-type:
               - ORGANIZATION_APPROVAL_REQUESTED
+              - ORGANIZATION_APPROVED
     environment:
       APPROVER_EMAIL: ${self:custom.approver_email}
       HANDLER_NAME: ${self:custom.send_notifications}
