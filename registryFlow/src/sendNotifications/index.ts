@@ -31,20 +31,17 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
             const organizationName = capitalize(detail.name);
             const subject = `${organizationName} applied for the PublicSpaces Registry`;
             const email = createMail({ recipients, sender, body, subject });
-            const response = await ses.sendEmail(email).promise();
-            console.log(response);
-            return null;
+            await ses.sendEmail(email).promise();
         }
         case EV.ORGANIZATION_APPROVED: {
             const recipients = [detail.contact.email];
             const body = "Test";
             const subject = `You were accepted to the PublicSpaces Registry`;
             const email = createMail({ recipients, sender, body, subject });
-            const response = await ses.sendEmail(email).promise();
-            console.log(response);
-            return null;
+            await ses.sendEmail(email).promise();
         }
     }
+    return null;
 };
 
 export default sendNotifications;
