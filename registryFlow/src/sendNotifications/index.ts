@@ -38,7 +38,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
             const sendEmail = createMail({
                 recipients: [detail.contact.email],
                 sender,
-                subject: `Your Application for the PublicSpaces Registry is Under Consideration`,
+                subject: `Your Application for ${organizationName} for the PublicSpaces Registry is Under Consideration`,
                 body: "Test",
             });
             await ses.sendEmail(approveEmail).promise();
