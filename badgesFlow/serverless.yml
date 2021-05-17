@@ -6,6 +6,7 @@ plugins:
 custom:
   parameter_prefix: public-badges/${opt:stage}
   secret_key: ${ssm:/${self:custom.parameter_prefix}/badges/secret_key}
+  approver_email: ${ssm:/${self:custom.parameter_prefix}/registry/approver_email}
   event_bus: ${ssm:/${self:custom.parameter_prefix}/shared/event_bus}
   role: ${ssm:/${self:custom.parameter_prefix}/badges/role}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
@@ -13,6 +14,7 @@ custom:
   api: ${self:custom.function_prefix}-graphql
   save_badge: ${self:custom.function_prefix}.save-badge
   run_value_case_scenarios: ${self:custom.function_prefix}.run-value-case-scenarios
+  send_notifications: ${self:custom.function_prefix}.send-notifications
   prepare_open_badge_artifact: ${self:custom.function_prefix}.prepare-open-badge-artifact
   sign_open_badge_artifact: ${self:custom.function_prefix}.sign-open-badge-artifact
 
@@ -46,6 +48,20 @@ functions:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       EVENT_BUS_NAME: ${self:custom.event_bus}
       HANDLER_NAME: ${self:custom.save_badge}
+  sendNotifications:
+    handler: dist/index.sendNotifications
+    events:
+      - eventBridge:
+          eventBus: ${self:custom.event_bus}
+          pattern:
+            source:
+              - ${self:custom.save_badge}
+            detail-type:
+              - BADGE_INSTANCE_UPDATED
+    environment:
+      APPROVER_EMAIL: ${self:custom.approver_email}
+      HANDLER_NAME: ${self:custom.send_notifications}
+      EVENT_BUS_NAME: ${self:custom.event_bus}
   runValueCaseScenarios:
     handler: dist/index.runValueCaseScenarios
     events:
