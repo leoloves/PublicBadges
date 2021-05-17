@@ -1,5 +1,6 @@
 import {map} from "ramda";
 import eventBus from "./eventBus";
+import email from "./email";
 import {Handler as AWSHandler} from "aws-lambda";
 import {PublicBadgesHandler} from "@public-badges/types";
 
@@ -26,4 +27,4 @@ const wrapServices: (
   serviceMap: Record<string, PublicBadgesHandler<any, any>>
 ) => Record<string, AWSHandler> = (serviceMap) => map(newHandler, serviceMap);
 
-export {wrapServices, eventBus};
+export {wrapServices, eventBus, email};
