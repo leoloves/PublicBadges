@@ -50,9 +50,7 @@ functions:
           pattern:
             source:
               - ${self:custom.save_organization}
-              - ${self:custom.api}
             detail-type:
-              - ORGANIZATION_REGISTRATION_REQUESTED
               - ORGANIZATION_APPROVAL_REQUESTED
               - ORGANIZATION_APPROVED
     environment:
