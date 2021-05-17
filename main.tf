@@ -80,6 +80,7 @@ module "public-spaces-badges" {
   policies = [
     module.public-spaces-registry.read_registry_bucket_policy,
     module.public-spaces-registry.write_registry_bucket_policy,
+    module.public-spaces-registry.registry_email_send_policy,
     module.public-spaces-shared.write_event_bus_policy,
     local.lambda_basic_execution_role
   ]
