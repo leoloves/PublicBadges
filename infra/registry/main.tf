@@ -76,6 +76,6 @@ resource "aws_iam_role" "registry_role" {
 resource "aws_ses_template" "approval_requested_template" {
   name    = "${var.project_prefix}-${local.name}-approval-requested-template"
   subject = "Greetings, {{name}}!"
-  html    = "file("${path.module}/templates/approval_requested.txt")"
-  text    = "file("${path.module}/templates/approval_requested.txt")"
+  html    = file("${path.module}/templates/approval_requested.txt")
+  text    = file("${path.module}/templates/approval_requested.txt")
 }
