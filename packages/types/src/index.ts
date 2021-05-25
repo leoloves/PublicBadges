@@ -1,8 +1,8 @@
-import {Event, Language} from "./models";
-import {PublicBadgesEvent} from "./events";
+import { Event, Language } from "./models";
+import { PublicBadgesEvent } from "./events";
 export * from "./events";
 export * from "./models";
-import {Errors} from "./errors";
+import { Errors } from "./errors";
 import {
   ValueCaseStore,
   BadgeInstanceStore,
@@ -34,9 +34,18 @@ type EmailParams = {
   subject: string;
 };
 
+type EmailTemplateParams = {
+  recipients: string[];
+  sender: string;
+  templateArn: string;
+  templateData: string;
+};
+
 export interface Email {
   create: (args: EmailParams) => Record<string, any>;
+  createFromTemplate: (args: EmailTemplateParams) => Record<string, any>;
   send: (args: EmailParams) => Promise<void>;
+  sendTemplate: (args: EmailTemplateParams) => Promise<void>;
 }
 
 export type InternalFunctionConfig = {
@@ -76,8 +85,8 @@ export type PublicBadgesStores = {
 export type PublicBadgesEventBus = EventBus<PublicBadgesEvent>;
 
 export interface ApolloContext {
-  rawEvent: {headers: {origin: string}};
-  functionContext: {functionName: string};
+  rawEvent: { headers: { origin: string } };
+  functionContext: { functionName: string };
   stores: PublicBadgesStores;
   language?: Language;
   organizationName?: string;
