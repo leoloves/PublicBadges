@@ -11,7 +11,6 @@ custom:
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
   approval_requested_template: ${ssm:/${self:custom.parameter_prefix}/registry/templates/approval_requested}
-  email_templates: ${ssm:/${self:custom.parameter_prefix}/registry/email_templates}
   function_prefix: public-badges-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
   send_notifications: ${self:custom.function_prefix}.send-notifications
