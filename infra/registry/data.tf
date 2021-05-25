@@ -47,6 +47,7 @@ data "aws_iam_policy_document" "email_send_policy" {
   statement {
     actions = [
       "ses:SendEmail",
+      "ses:SendTemplatedEmail",
       "ses:SendRawEmail"
     ]
     resources = ["*"]

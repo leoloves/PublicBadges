@@ -22,6 +22,9 @@ locals {
   lookup_table = "${var.project_prefix}-${local.name}-lookup-table-${var.environment_name}"
   organization_status_index ="${var.project_prefix}-organization-status-index-${var.environment_name}"
   parameter_prefix="/${var.project_prefix}/${var.environment_name}/${local.name}"
+  email_templates = {
+    approval_requested = aws_ses_template.approval_requested_template.name
+  }
 }
 
 output "read_registry_bucket_policy" {
