@@ -1,0 +1,19 @@
+{{displayName}} want to join the PublicSpaces registry.
+
+They applied with the following information:
+
+DomainName:
+{{domainName}}
+
+Contact:
+{{contactName}}
+{{contactEmail}}
+
+Admin:
+{{admin.name}}
+{{admin.email}}
+
+If you want to add them to the registry, please confirm using the 'approveOrganization' handler
+in the graphql playground, using the following input params.
+
+{{params}}
