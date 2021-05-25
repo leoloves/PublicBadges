@@ -20,20 +20,20 @@ const email: Email = {
       }
     };
   },
-  createFromTemplate: ({ recipients, sender, templateArn, templateData }) => {
+  createFromTemplate: ({ recipients, sender, templateName, templateData }) => {
     return {
       Destination: {
         ToAddresses: [...recipients],
       },
       Source: sender,
-      TemplateArn: templateArn,
+      Template: templateName,
       TemplateData: JSON.stringify(templateData)
     };
   },
   sendTemplate: async ({
-    recipients, sender, templateArn, templateData
+    recipients, sender, templateName, templateData
   }) => {
-    const mail: any = email.createFromTemplate({ recipients, sender, templateData, templateArn });
+    const mail: any = email.createFromTemplate({ recipients, sender, templateData, templateName });
     await ses.sendTemplatedEmail(mail).promise();
   },
   send: async ({ recipients, sender, body, subject }) => {

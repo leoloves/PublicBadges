@@ -31,5 +31,5 @@ resource "aws_ssm_parameter" "registry_approver_email" {
 resource "aws_ssm_parameter" "approval_requested_template" {
   name        = "${local.parameter_prefix}/templates/approval_requested"
   type        = "SecureString"
-  value       = aws_ses_template.approval_requested_template.arn
+  value       = aws_ses_template.approval_requested_template.name
 }
