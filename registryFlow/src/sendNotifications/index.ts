@@ -29,6 +29,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
       const params = { organizationId, approvalToken, approver: approverEmail };
       const templateData = {
         displayName: organizationName,
+        domainName: detail.domainName,
         contactName: detail.contact.name,
         contactEmail: detail.contact.email,
         adminName: detail.admin.name,
