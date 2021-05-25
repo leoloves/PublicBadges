@@ -1,4 +1,4 @@
-import {capitalize} from "voca";
+import { capitalize } from "voca";
 import {
   PublicBadgesEventType as EV,
   OrganizationApprovalRequestedEvent,
@@ -8,7 +8,7 @@ import {
   PublicBadgesHandler,
 } from "@public-badges/types";
 import arTemplate from "./approvalRequestedTemplate";
-import {email} from "@public-badges/adapters";
+import { email } from "@public-badges/adapters";
 
 export type InputEvent =
   | OrganizationRegistrationRequestedEvent
@@ -21,9 +21,11 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   detail,
 }) => {
   const approverEmail = process.env.APPROVER_EMAIL;
+  const templates = process.env.EMAIL_TEMPLATES;
   const sender = approverEmail;
   const organizationName = capitalize(detail.name);
   const organization = detail as PendingOrganization;
+  console.log(templates);
   switch (detailType) {
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
       await email.send({

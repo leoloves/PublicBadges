@@ -10,6 +10,7 @@ custom:
   role: ${ssm:/${self:custom.parameter_prefix}/registry/role}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
+  email_templates: ${ssm:/${self:custom.parameter_prefix}/registry/templates}
   function_prefix: public-badges-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
   send_notifications: ${self:custom.function_prefix}.send-notifications
@@ -35,9 +36,9 @@ functions:
           pattern:
             source:
               - ${self:custom.api}
-            detail-type: 
-             - ORGANIZATION_REGISTRATION_REQUESTED
-             - ORGANIZATION_APPROVAL_ACCEPTED
+            detail-type:
+              - ORGANIZATION_REGISTRATION_REQUESTED
+              - ORGANIZATION_APPROVAL_ACCEPTED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       EVENT_BUS_NAME: ${self:custom.event_bus}
@@ -57,6 +58,7 @@ functions:
       APPROVER_EMAIL: ${self:custom.approver_email}
       HANDLER_NAME: ${self:custom.send_notifications}
       EVENT_BUS_NAME: ${self:custom.event_bus}
+      EMAIL_TEMPLATES: ${self:custom.email_templates}
   updateRegistry:
     handler: dist/index.updateRegistry
     events:
@@ -65,9 +67,9 @@ functions:
           pattern:
             source:
               - ${self:custom.api}
-            detail-type: 
-             - ORGANIZATION_REGISTRATION_REQUESTED
-             - ORGANIZATION_APPROVAL_ACCEPTED
+            detail-type:
+              - ORGANIZATION_REGISTRATION_REQUESTED
+              - ORGANIZATION_APPROVAL_ACCEPTED
     environment:
       REGISTRY_LOOKUP_TABLE: ${self:custom.registry_lookup}
       EVENT_BUS_NAME: ${self:custom.event_bus}
