@@ -59,7 +59,6 @@ functions:
       APPROVER_EMAIL: ${self:custom.approver_email}
       HANDLER_NAME: ${self:custom.send_notifications}
       EVENT_BUS_NAME: ${self:custom.event_bus}
-      EMAIL_TEMPLATES: ${self:custom.email_templates}
       APPROVAL_REQUESTED_TEMPLATE: ${self:custom.approval_requested_template}
   updateRegistry:
     handler: dist/index.updateRegistry
