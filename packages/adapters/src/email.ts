@@ -34,7 +34,10 @@ const email: Email = {
     recipients, sender, templateName, templateData
   }) => {
     const mail: any = email.createFromTemplate({ recipients, sender, templateData, templateName });
-    await ses.sendTemplatedEmail(mail).promise();
+    console.log(mail);
+    const res = await ses.sendTemplatedEmail(mail).promise();
+    console.log(res);
+    return;
   },
   send: async ({ recipients, sender, body, subject }) => {
     const mail: any = email.create({ recipients, sender, body, subject });

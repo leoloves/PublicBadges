@@ -33,9 +33,3 @@ resource "aws_ssm_parameter" "approval_requested_template" {
   type        = "SecureString"
   value       = aws_ses_template.approval_requested_template.name
 }
-
-resource "aws_ssm_parameter" "email_templates" {
-  name        = "${local.parameter_prefix}/email_templates"
-  type        = "SecureString"
-  value       = jsonencode(local.email_templates)
-}

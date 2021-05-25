@@ -21,8 +21,6 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
 }) => {
   const approverEmail = process.env.APPROVER_EMAIL;
   const templateName = process.env.APPROVAL_REQUESTED_TEMPLATE;
-  const templates = process.env.EMAIL_TEMPLATES;
-  console.log(templates);
   const sender = approverEmail;
   const organizationName = capitalize(detail.name);
   switch (detailType) {
