@@ -72,3 +72,10 @@ resource "aws_iam_role" "registry_role" {
   assume_role_policy = data.aws_iam_policy_document.lambda_role_assume_role_policy.json
   managed_policy_arns = var.policies
 }
+
+resource "aws_ses_template" "approval_requested_template" {
+  name    = "${var.project_prefix}-${local.name}-approval-requested-template"
+  subject = "Greetings, {{name}}!"
+  html    = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>"
+  text    = "Hello {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+}

@@ -1,5 +1,5 @@
-import AWS from "aws-sdk"; // eslint-disable-line import/no-extraneous-dependencies
-import {PublicBadge, Errors} from "@public-badges/types";
+import AWS from "aws-sdk";
+import { PublicBadge, Errors } from "@public-badges/types";
 const s3 = new AWS.S3();
 
 type Save<T> = (id: string, document: T) => Promise<T>;

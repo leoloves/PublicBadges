@@ -6,21 +6,22 @@ import {
   PublicBadgesEventType,
   PublicBadge,
 } from "@public-badges/types";
-import {v4 as uuid} from "uuid";
-import {timeout} from "../helpers";
+import { v4 as uuid } from "uuid";
+import { timeout } from "../helpers";
 
-const {BADGE_ISSUANCE_REQUESTED} = PublicBadgesEventType;
+const { BADGE_ISSUANCE_REQUESTED } = PublicBadgesEventType;
 
 const applyForBadge: MutationResolvers["applyForBadge"] = async (
   _root,
-  {input},
-  {stores, eventBus}
+  { input },
+  { stores, eventBus }
 ) => {
-  const {valueCaseId, domainName} = input;
+  const { valueCaseId, domainName } = input;
 
   // don't remove the timeout
   await timeout(500);
-  const organization = await stores.registry.fetch({domainName});
+  const organization = await stores.registry.fetch({ domainName });
+
   if (!organization) {
     throw new Error(Errors.UNKNOWN_ORGANIZATION);
   }
@@ -29,7 +30,7 @@ const applyForBadge: MutationResolvers["applyForBadge"] = async (
     throw new Error(Errors.UNAPPROVED_ORGANIZATION);
   }
 
-  const valueCase = await stores.valueCase.fetch({valueCaseId});
+  const valueCase = await stores.valueCase.fetch({ valueCaseId });
   if (!valueCase) {
     throw new Error(Errors.MISSING_VALUE_CASE);
   }
@@ -46,7 +47,7 @@ const applyForBadge: MutationResolvers["applyForBadge"] = async (
 
   const badgeId = uuid();
   const status = PublicBadgeStatus.Pending;
-  const {name, tags, description, narrative} = valueCase;
+  const { name, tags, description, narrative } = valueCase;
 
   return eventBus.put({
     detailType: BADGE_ISSUANCE_REQUESTED,

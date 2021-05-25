@@ -26,7 +26,7 @@ export type OutputEvent =
   | BadgeIssuanceDelayedEvent;
 
 enum ScenarioOutcome {
-  PASSED = "PASSED",
+  PASSED = "ASSED",
   FAILED = "FAILED",
   DELAYED = "DELAYED",
 }

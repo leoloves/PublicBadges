@@ -1,4 +1,4 @@
-import {ApolloServer} from "apollo-server-lambda";
+import { ApolloServer } from "apollo-server-lambda";
 import resolvers from "./resolvers";
 import typeDefs from "@public-badges/graphql-schema";
 import context from "./context";
