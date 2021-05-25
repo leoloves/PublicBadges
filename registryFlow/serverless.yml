@@ -10,7 +10,7 @@ custom:
   role: ${ssm:/${self:custom.parameter_prefix}/registry/role}
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
-  email_templates: ${ssm:/${self:custom.parameter_prefix}/registry/templates}
+  approval_requested_template: ${ssm:/${self:custom.parameter_prefix}/registry/templates/approval_requested}
   function_prefix: public-badges-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
   send_notifications: ${self:custom.function_prefix}.send-notifications
@@ -58,7 +58,7 @@ functions:
       APPROVER_EMAIL: ${self:custom.approver_email}
       HANDLER_NAME: ${self:custom.send_notifications}
       EVENT_BUS_NAME: ${self:custom.event_bus}
-      EMAIL_TEMPLATES: ${self:custom.email_templates}
+      APPROVAL_REQUESTED_TEMPLATE: ${self:custom.approval_requested_template}
   updateRegistry:
     handler: dist/index.updateRegistry
     events:

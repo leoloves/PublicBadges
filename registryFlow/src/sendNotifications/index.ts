@@ -4,10 +4,8 @@ import {
   OrganizationApprovalRequestedEvent,
   OrganizationRegistrationRequestedEvent,
   OrganizationApprovedEvent,
-  PendingOrganization,
   PublicBadgesHandler,
 } from "@public-badges/types";
-import arTemplate from "./approvalRequestedTemplate";
 import { email } from "@public-badges/adapters";
 
 export type InputEvent =
@@ -21,21 +19,26 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   detail,
 }) => {
   const approverEmail = process.env.APPROVER_EMAIL;
-  const templates = process.env.EMAIL_TEMPLATES;
+  const templateArn = process.env.APPROVAL_REQUESTED_TEMPLATE;
+  console.log(templateArn);
   const sender = approverEmail;
   const organizationName = capitalize(detail.name);
-  const organization = detail as PendingOrganization;
-  console.log(templates);
   switch (detailType) {
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
-      await email.send({
+      const params = { organizationId, approvalToken, approver: approverEmail };
+      const templateData = {
+        displayName: organizationName,
+        contactName: detail.contact.name,
+        contactEmail: detail.contact.email,
+        adminName: detail.admin.name,
+        adminEmail: detail.admin.email,
+        params
+      };
+      await email.sendTemplate({
         recipients: [approverEmail],
         sender,
-        subject: `${organizationName} applied for the PublicSpaces Registry`,
-        body: arTemplate({
-          organization,
-          approverEmail,
-        }),
+        templateArn,
+        templateData
       });
       await email.send({
         recipients: [detail.contact.email, detail.admin.email],

@@ -1,10 +1,10 @@
-import {PendingOrganization} from "@public-badges/types";
-import {capitalize} from "voca";
+import { PendingOrganization } from "@public-badges/types";
+import { capitalize } from "voca";
 
 const template: (args: {
   organization: PendingOrganization;
   approverEmail: string;
-}) => string = ({organization, approverEmail}) => {
+}) => string = ({ organization, approverEmail }) => {
   const {
     name,
     domainName,
@@ -13,7 +13,7 @@ const template: (args: {
     organizationId,
     approvalToken,
   } = organization;
-  const input = {organizationId, approvalToken, approver: approverEmail};
+  const input = { organizationId, approvalToken, approver: approverEmail };
   return `
   ${capitalize(name)} want to join the PublicSpaces registry.
 
@@ -33,7 +33,7 @@ const template: (args: {
   If you want to add them to the registry, please confirm using the 'approveOrganization' handler
   in the graphql playground, using the following input params.
 
-  ${JSON.stringify({input}, null, 2)}
+  ${JSON.stringify({ input }, null, 2)}
   `;
 };
 
