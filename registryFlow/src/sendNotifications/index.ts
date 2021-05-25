@@ -4,6 +4,7 @@ import {
   OrganizationApprovalRequestedEvent,
   OrganizationRegistrationRequestedEvent,
   OrganizationApprovedEvent,
+  PendingOrganization,
   PublicBadgesHandler,
 } from "@public-badges/types";
 import { email } from "@public-badges/adapters";
@@ -25,6 +26,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   const organizationName = capitalize(detail.name);
   switch (detailType) {
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
+      const { organizationId, approvalToken } = detail as PendingOrganization;
       const params = { organizationId, approvalToken, approver: approverEmail };
       const templateData = {
         displayName: organizationName,
