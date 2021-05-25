@@ -26,7 +26,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   switch (detailType) {
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
       const { organizationId, approvalToken } = detail as PendingOrganization;
-      const params = { organizationId, approvalToken, approver: approverEmail };
+      const params = JSON.stringify({ organizationId, approvalToken, approver: approverEmail }, null, 2);
       const templateData = {
         displayName: organizationName,
         domainName: detail.domainName,

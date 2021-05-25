@@ -38,7 +38,7 @@ type EmailTemplateParams = {
   recipients: string[];
   sender: string;
   templateName: string;
-  templateData: Record<string, any>;
+  templateData: Record<string, string>;
 };
 
 export interface Email {
