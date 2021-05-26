@@ -7,22 +7,22 @@ import {
   OpenBadgeClass,
   Issuer,
 } from "@public-badges/types";
-import {uuidToUrn, hashEmailAddress, createISODate} from "./helpers";
+import { uuidToUrn, hashEmailAddress, createISODate } from "./helpers";
 
 const yearInSeconds = 31556926;
 
-const createIssuer = ({issuerId, ...issuerData}: Issuer) => ({
+const createIssuer = ({ issuerId, ...issuerData }: Issuer) => ({
   id: issuerId,
   ...issuerData,
 });
 
-const createProof = ({proofId, narrative, ...proof}: Proof) => ({
+const createProof = ({ proofId, narrative, ...proof }: Proof) => ({
   ...proof,
   id: uuidToUrn(proofId),
   narrative: narrative.join("\n"),
 });
 
-const createRecipient = ({email}: {email: string}) => {
+const createRecipient = ({ email }: { email: string }) => {
   const salt = "PUBLIC BADGES";
   const identity = hashEmailAddress(email, salt);
   return {
@@ -36,8 +36,8 @@ const createRecipient = ({email}: {email: string}) => {
 const createBadgeClass: (args: {
   valueCase: ValueCase;
   issuer: Issuer;
-}) => OpenBadgeClass = ({issuer: rawIssuer, valueCase}) => {
-  const {valueCaseId, image, name, tags, description, narrative} = valueCase;
+}) => OpenBadgeClass = ({ issuer: rawIssuer, valueCase }) => {
+  const { valueCaseId, image, name, tags, description, narrative } = valueCase;
   const issuer = createIssuer(rawIssuer);
   return {
     type: "BadgeClass",
@@ -46,7 +46,7 @@ const createBadgeClass: (args: {
     tags,
     description,
     image,
-    criteria: {narrative},
+    criteria: { narrative },
     issuer,
   };
 };
@@ -61,15 +61,15 @@ const createArtifact: (args: {
   valueCase: ValueCase;
   organization: Organization;
   issuer: Issuer;
-}) => OpenBadge = ({badgeInstance, valueCase, organization, issuer}) => {
-  const {badgeId, evidence} = badgeInstance;
+}) => OpenBadge = ({ badgeInstance, valueCase, organization, issuer }) => {
+  const { badgeId, evidence } = badgeInstance;
   return {
     "@context": "https://w3id.org/openbadges/v2",
     id: uuidToUrn(badgeId),
     type: "Assertion",
     verification: createVerification(),
     recipient: createRecipient(organization.contact),
-    badge: createBadgeClass({valueCase, issuer}),
+    badge: createBadgeClass({ valueCase, issuer }),
     issuedOn: createISODate(),
     expires: createISODate(yearInSeconds),
     evidence: evidence.map(createProof),

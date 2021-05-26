@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "docs": "docsify serve docs",
+    "build:emailTemplates": "remark emailTemplates/*.md --use html -o emailTemplates/compiled/",
     "build:schema": "yarn workspace @public-badges/graphql-schema build",
     "build:types": "yarn workspace @public-badges/types build",
     "build:stores": "yarn workspace @public-badges/stores build",
@@ -45,14 +46,17 @@
     "@graphql-codegen/typescript-resolvers": "^1.19.0",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
-    "docsify": "^4.11.4",
+    "docsify": "^4.12.1",
     "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "husky": "^6.0.0",
-    "lehre": "^1.3.6"
+    "lehre": "^1.3.6",
+    "remark-cli": "^9.0.0",
+    "remark-html": "^13.0.1"
   },
   "workspaces": [
     "api",
