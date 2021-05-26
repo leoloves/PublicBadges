@@ -19,7 +19,7 @@ They applied with the following information:
 {{adminEmail}}
 
 If you want to add them to the registry, please confirm using the 'approveOrganization' handler
-in the graphql playground, using the following input params.
+in the [graphql playground](), using the following input params.
 
 ```json
 {{params}}
