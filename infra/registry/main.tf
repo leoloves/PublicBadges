@@ -73,9 +73,3 @@ resource "aws_iam_role" "registry_role" {
   managed_policy_arns = var.policies
 }
 
-resource "aws_ses_template" "approval_requested_template" {
-  name    = "${var.project_prefix}-${local.name}-approval-requested-template"
-  subject = "{{displayName}} was accepted to the PublicSpaces Registry"
-  html    = file("${path.root}/emailTemplates/compiled/approval_requested.html")
-  text    = file("${path.root}/emailTemplates/compiled/approval_requested.txt")
-}

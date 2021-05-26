@@ -3,8 +3,8 @@ import {
   PublicBadgesHandler,
   BadgeInstanceUpdated,
 } from "@public-badges/types";
-import {capitalize} from "voca";
-import {email} from "@public-badges/adapters";
+import { capitalize } from "voca";
+import { email } from "@public-badges/adapters";
 
 export type InputEvent = BadgeInstanceUpdated;
 export type OutputEvent = null;
@@ -15,7 +15,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
 }) => {
   const approverEmail = process.env.APPROVER_EMAIL;
   const sender = approverEmail;
-  const {name, status} = detail;
+  const { name, status } = detail;
   const badgeName = capitalize(name);
   switch (detailType) {
     case EV.BADGE_INSTANCE_UPDATED: {
