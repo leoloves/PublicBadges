@@ -1,15 +1,15 @@
-name: 'deploy all'
+name: "deploy all"
 
 on:
   push:
     branches:
-    - master
-    - infra
+      - master
+      - infra
   pull_request:
 
 jobs:
   infra:
-    name: 'Deploy Infra'
+    name: "Deploy Infra"
     runs-on: ubuntu-latest
     env:
       TF_WORKSPACE: ${{ secrets.WORKSPACE }}
@@ -17,23 +17,30 @@ jobs:
       run:
         shell: bash
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-    - name: Terraform Init
-      run: terraform init
-    - name: Terraform Format
-      run: terraform fmt -check
-    - name: Terraform Plan
-      run: terraform plan
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Install Dependencies
+        run: yarn global add remark-cli remark-html
+      - name: Compile Email Templates
+        run: remark emailTemplates/*.md --use html -o emailTemplates/compiled/
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Terraform Init
+        run: terraform init
+      - name: Terraform Format
+        run: terraform fmt -check
+      - name: Terraform Plan
+        run: terraform plan
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        run: terraform apply -auto-approve
   services:
-    name: 'Deploy Services'
+    name: "Deploy Services"
     needs: infra
     runs-on: ubuntu-latest
     env:
@@ -41,17 +48,17 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       SLS_ENVIRONMENT: ${{ secrets.WORKSPACE }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - name: Install Dependencies
-      run: yarn install
-    - name: Use Husky
-      run: yarn prepare
-    - name: Build Packages Code
-      run: yarn build:packages
-    - name: Build Services code
-      run: yarn build:services
-    - name: Deploy Services Code 
-      run: yarn deploy:services
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: Install Dependencies
+        run: yarn install
+      - name: Use Husky
+        run: yarn prepare
+      - name: Build Packages Code
+        run: yarn build:packages
+      - name: Build Services code
+        run: yarn build:services
+      - name: Deploy Services Code
+        run: yarn deploy:services
