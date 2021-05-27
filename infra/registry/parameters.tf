@@ -31,7 +31,7 @@ resource "aws_ssm_parameter" "registry_approver_email" {
 resource "aws_ssm_parameter" "organization_approval_requested_template" {
   name        = "${local.parameter_prefix}/templates/organization_approval_requested"
   type        = "SecureString"
-  value       = aws_ses_template.approval_requested_template.name
+  value       = aws_ses_template.organization_approval_requested_template.name
 }
 
 resource "aws_ssm_parameter" "pending_organization_registration_template" {
