@@ -28,8 +28,20 @@ resource "aws_ssm_parameter" "registry_approver_email" {
   value       = var.approver_email
 }
 
-resource "aws_ssm_parameter" "approval_requested_template" {
-  name        = "${local.parameter_prefix}/templates/approval_requested"
+resource "aws_ssm_parameter" "organization_approval_requested_template" {
+  name        = "${local.parameter_prefix}/templates/organization_approval_requested"
   type        = "SecureString"
   value       = aws_ses_template.approval_requested_template.name
+}
+
+resource "aws_ssm_parameter" "pending_organization_registration_template" {
+  name        = "${local.parameter_prefix}/templates/pending_organization_registration"
+  type        = "SecureString"
+  value       = aws_ses_template.pending_organization_registration_template.name
+}
+
+resource "aws_ssm_parameter" "approved_organization_registration_template" {
+  name        = "${local.parameter_prefix}/templates/approved_organization_registration"
+  type        = "SecureString"
+  value       = aws_ses_template.approved_organization_registration_template.name
 }
