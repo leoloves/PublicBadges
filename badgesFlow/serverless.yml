@@ -12,7 +12,7 @@ custom:
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   function_prefix: public-badges-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
-  status_changed_template: ${self:custom.parameter_prefix/badges/templates/badge_application_status_changed}
+  status_changed_template: ${self:custom.parameter_prefix}/badges/templates/badge_application_status_changed}
   save_badge: ${self:custom.function_prefix}.save-badge
   run_value_case_scenarios: ${self:custom.function_prefix}.run-value-case-scenarios
   send_notifications: ${self:custom.function_prefix}.send-notifications
