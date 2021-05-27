@@ -24,7 +24,9 @@ jobs:
           node-version: "14"
       - name: Install Dependencies
         run: npm install -g add remark-cli remark-html
-      - name: Compile Email Templates
+      - name: Render Email Templates to TXT
+        run: remark emailTemplates/*.md -o emailTemplates/compiled/
+      - name: Render Email Templates to HTML
         run: remark emailTemplates/*.md --use html -o emailTemplates/compiled/
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1

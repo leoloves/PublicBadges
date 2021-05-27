@@ -22,11 +22,13 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   const approverEmail = process.env.APPROVER_EMAIL;
   const sender = approverEmail;
   const organizationName = capitalize(detail.name);
+
   const {
     APPROVAL_REQUESTED_TEMPLATE,
     PENDING_REGISTRATION_TEMPLATE,
     APPROVED_REGISTRATION_TEMPLATE,
   } = process.env;
+
   switch (detailType) {
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
       const { organizationId, approvalToken } = detail as PendingOrganization;

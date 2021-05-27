@@ -144,3 +144,4 @@ terraform.rco
 
 /dist
 graphql.schema.json
+/emailTemplates/compiled/*
