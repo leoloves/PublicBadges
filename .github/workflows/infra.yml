@@ -24,6 +24,8 @@ jobs:
           node-version: "14"
       - name: Install Dependencies
         run: npm install -g add remark-cli remark-html
+      - name: Make Output Dir form Email Templates
+        run: mkdir emailTemplates/compiled
       - name: Render Email Templates to TXT
         run: remark emailTemplates/*.md -o emailTemplates/compiled/
       - name: Render Email Templates to HTML
