@@ -12,6 +12,7 @@ custom:
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   function_prefix: public-badges-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
+  status_changed_template: ${self:custom.parameter_prefix/badges/templates/badge_application_status_changed}
   save_badge: ${self:custom.function_prefix}.save-badge
   run_value_case_scenarios: ${self:custom.function_prefix}.run-value-case-scenarios
   send_notifications: ${self:custom.function_prefix}.send-notifications
@@ -39,11 +40,11 @@ functions:
               - ${self:custom.api}
               - ${self:custom.run_value_case_scenarios}
               - ${self:custom.sign_open_badge_artifact}
-            detail-type: 
-             - BADGE_ISSUANCE_REQUESTED
-             - BADGE_ISSUANCE_APPROVED
-             - BADGE_ISSUANCE_REJECTED
-             - OPEN_BADGES_ARTIFACT_SIGNED
+            detail-type:
+              - BADGE_ISSUANCE_REQUESTED
+              - BADGE_ISSUANCE_APPROVED
+              - BADGE_ISSUANCE_REJECTED
+              - OPEN_BADGES_ARTIFACT_SIGNED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       EVENT_BUS_NAME: ${self:custom.event_bus}
@@ -61,6 +62,7 @@ functions:
     environment:
       APPROVER_EMAIL: ${self:custom.approver_email}
       HANDLER_NAME: ${self:custom.send_notifications}
+      STATUS_CHANGED_TEMPLATE: ${self:custom.status_changed_template}
       EVENT_BUS_NAME: ${self:custom.event_bus}
   runValueCaseScenarios:
     handler: dist/index.runValueCaseScenarios
@@ -70,8 +72,8 @@ functions:
           pattern:
             source:
               - ${self:custom.api}
-            detail-type: 
-             - BADGE_ISSUANCE_REQUESTED
+            detail-type:
+              - BADGE_ISSUANCE_REQUESTED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       EVENT_BUS_NAME: ${self:custom.event_bus}
@@ -84,8 +86,8 @@ functions:
           pattern:
             source:
               - ${self:custom.run_value_case_scenarios}
-            detail-type: 
-             - BADGE_ISSUANCE_APPROVED
+            detail-type:
+              - BADGE_ISSUANCE_APPROVED
     environment:
       REGISTRY_BUCKET: ${self:custom.registry_bucket}
       EVENT_BUS_NAME: ${self:custom.event_bus}
@@ -98,8 +100,8 @@ functions:
           pattern:
             source:
               - ${self:custom.prepare_open_badge_artifact}
-            detail-type: 
-             - OPEN_BADGES_ARTIFACT_CREATED
+            detail-type:
+              - OPEN_BADGES_ARTIFACT_CREATED
     environment:
       HANDLER_NAME: ${self:custom.sign_open_badge_artifact}
       PRIVATE_KEY: ${self:custom.secret_key}
