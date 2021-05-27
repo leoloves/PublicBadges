@@ -11,6 +11,8 @@ custom:
   registry_bucket: ${ssm:/${self:custom.parameter_prefix}/registry/bucket}
   registry_lookup: ${ssm:/${self:custom.parameter_prefix}/registry/lookup_table}
   approval_requested_template: ${ssm:/${self:custom.parameter_prefix}/registry/templates/approval_requested}
+  pending_registration_template: ${ssm:/${self:custom.parameter_prefix}/registry/templates/pending_registration}
+  approved_registration_template: ${ssm:/${self:custom.parameter_prefix}/registry/templates/approved_registration}
   function_prefix: public-badges-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
   send_notifications: ${self:custom.function_prefix}.send-notifications
@@ -59,6 +61,8 @@ functions:
       HANDLER_NAME: ${self:custom.send_notifications}
       EVENT_BUS_NAME: ${self:custom.event_bus}
       APPROVAL_REQUESTED_TEMPLATE: ${self:custom.approval_requested_template}
+      PENDING_REGISTRATION_TEMPLATE: ${self:custom.pending_registration_template}
+      APPROVED_REGISTRATION_TEMPLATE: ${self:custom.approved_registration_template}
   updateRegistry:
     handler: dist/index.updateRegistry
     events:

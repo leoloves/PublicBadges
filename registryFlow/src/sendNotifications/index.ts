@@ -20,42 +20,53 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   detail,
 }) => {
   const approverEmail = process.env.APPROVER_EMAIL;
-  const templateName = process.env.APPROVAL_REQUESTED_TEMPLATE;
   const sender = approverEmail;
   const organizationName = capitalize(detail.name);
+  const {
+    APPROVAL_REQUESTED_TEMPLATE,
+    PENDING_REGISTRATION_TEMPLATE,
+    APPROVED_REGISTRATION_TEMPLATE,
+  } = process.env;
   switch (detailType) {
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
       const { organizationId, approvalToken } = detail as PendingOrganization;
-      const params = JSON.stringify({ organizationId, approvalToken, approver: approverEmail }, null, 2);
-      const templateData = {
-        displayName: organizationName,
-        domainName: detail.domainName,
-        contactName: detail.contact.name,
-        contactEmail: detail.contact.email,
-        adminName: detail.admin.name,
-        adminEmail: detail.admin.email,
-        params
-      };
+      const params = JSON.stringify(
+        { organizationId, approvalToken, approver: approverEmail },
+        null,
+        2
+      );
       await email.sendTemplate({
         recipients: [approverEmail],
         sender,
-        templateName,
-        templateData
+        templateName: APPROVAL_REQUESTED_TEMPLATE,
+        templateData: {
+          displayName: organizationName,
+          domainName: detail.domainName,
+          contactName: detail.contact.name,
+          contactEmail: detail.contact.email,
+          adminName: detail.admin.name,
+          adminEmail: detail.admin.email,
+          params,
+        },
       });
-      await email.send({
+      await email.sendTemplate({
         recipients: [detail.contact.email, detail.admin.email],
         sender,
-        subject: `Your Application for ${organizationName} for the PublicSpaces Registry is Under Consideration`,
-        body: "Test",
+        templateName: PENDING_REGISTRATION_TEMPLATE,
+        templateData: {
+          displayName: organizationName,
+        },
       });
       return null;
     }
     case EV.ORGANIZATION_APPROVED: {
-      await email.send({
+      await email.sendTemplate({
         recipients: [detail.contact.email, detail.admin.email, approverEmail],
         sender,
-        subject: `${organizationName} was accepted to the PublicSpaces Registry`,
-        body: "Test",
+        templateName: APPROVED_REGISTRATION_TEMPLATE,
+        templateData: {
+          displayName: organizationName,
+        },
       });
       return null;
     }
