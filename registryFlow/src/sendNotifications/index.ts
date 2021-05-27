@@ -31,7 +31,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
     case EV.ORGANIZATION_APPROVAL_REQUESTED: {
       const { organizationId, approvalToken } = detail as PendingOrganization;
       const params = JSON.stringify(
-        { organizationId, approvalToken, approver: approverEmail },
+        { input: { organizationId, approvalToken, approver: approverEmail } },
         null,
         2
       );
