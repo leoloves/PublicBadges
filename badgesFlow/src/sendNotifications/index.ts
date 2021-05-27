@@ -16,6 +16,7 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
   const approverEmail = process.env.APPROVER_EMAIL;
   const sender = approverEmail;
   const { name, status } = detail;
+  const badgeName = capitalize(name);
   switch (detailType) {
     case EV.BADGE_INSTANCE_UPDATED: {
       await email.sendTemplate({
