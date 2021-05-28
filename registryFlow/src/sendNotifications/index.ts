@@ -62,12 +62,20 @@ const sendNotifications: PublicBadgesHandler<InputEvent, OutputEvent> = async ({
       return null;
     }
     case EV.ORGANIZATION_APPROVED: {
+      const { domainName } = detail as PendingOrganization;
+      const valueCaseId = "88c7a930-3181-11ea-9858-b312ce22102d";
+      const params = JSON.stringify(
+        { input: { domainName, valueCaseId } },
+        null,
+        2
+      );
       await email.sendTemplate({
-        recipients: [detail.contact.email, detail.admin.email, approverEmail],
+        recipients: [detail.contact.email, detail.admin.email],
         sender,
         templateName: APPROVED_REGISTRATION_TEMPLATE,
         templateData: {
           displayName: organizationName,
+          params,
         },
       });
       return null;
