@@ -15,16 +15,17 @@ The goal of the Public Badges is not to come up with an one size fits all value
 system for the internet. Instead, it is a tool to facilitate discussion about
 the choice of values within a pluralist landscape.
 
-Public Badges are currently available to members of the PublicSpaces coalition. If
-you work for a public institution, and you are interested in joining, please [email us]()
+Public Badges are currently available to members of the PublicSpaces coalition.
+If you work for a public institution, and you are interested in joining, please
+[email us]()
 
 
 ## Zero Badge
 
-At the moment, there is only one badge available.
-Thi is only open to current members of the
-[PublicSpaces Coalition](https://publicspaces.net/the-coalition/),
-but we aim to broaden our scope and reach later this year.
+At the moment, there is only one badge available: the so-called Zero Badge.
+This is only open to current members of the [PublicSpaces
+Coalition](https://publicspaces.net/the-coalition/), but we aim to broaden our
+scope and reach later this year.
 
 The current state and envisioned roadmap of the project can be found
 [HERE](./state_of_the_project.md)
@@ -33,15 +34,17 @@ PublicSpaces members have to go through the following steps:
 
 ### 1. Apply for the PublicSpaces Registry
 
-In order to do so, you can either make a curl request to the [api]() or select
-the 'Register Organization' tab in the [graphql-playground]() and enter your input
-params in the box in the bottom left corner:
+In order to do so, you can either make a curl request to the
+[api](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/graphql) or
+select the 'Register Organization' tab in the
+[graphql-playground](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/playground)
+and enter your input params in the box in the bottom left corner:
 
 ```json
 
 {
   "input":  {
-    "name": "Cool Org",
+    "name": "CoolPublicOrg",
     "domainName": "https://example.org",
     "contact": {
       "name": "Jane Dodo"
@@ -58,9 +61,11 @@ params in the box in the bottom left corner:
 
 ### 2. Apply for the Zero Badge
 
-In order to do so, you can either make a curl request to the [api]() or select
-the 'Apply For Badge' tab in the [graphql-playground]() and enter your input
-params in the box in the bottom left corner:
+In order to do so, you can either make a curl request to the
+[api](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/graphql) or
+select the 'Apply For Badge' tab in the
+[graphql-playground](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/playground)
+and enter your input params in the box in the bottom left corner:
 
 ```json
 
