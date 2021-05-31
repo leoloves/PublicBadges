@@ -118,4 +118,4 @@ npm install && npm run prepare
 
 - [x] Create Github Organization
 - [x] Install Doc Tool
-- [ ] Update Documentation
+- [x] Update Documentation
