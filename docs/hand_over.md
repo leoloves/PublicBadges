@@ -13,7 +13,7 @@
 
 ### Offcourse
 
-- [ ] Technical Documentation
+- [ ] Finalize Technical Documentation
 - [ ] Deploy Final Environment
 - [ ] Lock Down AWS Privileges
 
