@@ -15,7 +15,7 @@
 
 - [ ] Technical Documentation
 - [ ] Deploy Final Environment
-- [ ] Lock Down AWS
+- [ ] Lock Down AWS Privileges
 
 ### Waag
 
