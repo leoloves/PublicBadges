@@ -15,20 +15,64 @@ The goal of the Public Badges is not to come up with an one size fits all value
 system for the internet. Instead, it is a tool to facilitate discussion about
 the choice of values within a pluralist landscape.
 
-## Pilot Phase - Zero Badge
+Public Badges are currently available to members of the PublicSpaces coalition. If
+you work for a public institution, and you are interested in joining, please [email us]()
 
-We are currently in a pilot phase, testing the so-called [Zero
-Badge](./ZERO_BADGE.md). This phase is only open to current members of the
+
+## Zero Badge
+
+At the moment, there is only one badge available.
+Thi is only open to current members of the
 [PublicSpaces Coalition](https://publicspaces.net/the-coalition/),
 but we aim to broaden our scope and reach later this year.
 
 The current state and envisioned roadmap of the project can be found
-[here](./STATE_OF_THE_PROJECT.md)
+[HERE](./state_of_the_project.md)
 
-## Flow [TODO]
+PublicSpaces members have to go through the following steps:
 
-For a more detailed explanation of how the Public Badges Flow works, we refer you to the
-following [poster](./Poster%20Public%20Badges.pdf) for now.
+### 1. Apply for the PublicSpaces Registry
+
+In order to do so, you can either make a curl request to the [api]() or select
+the 'Register Organization' tab in the [graphql-playground]() and enter your input
+params in the box in the bottom left corner:
+
+```json
+
+{
+  "input":  {
+    "name": "Cool Org",
+    "domainName": "https://example.org",
+    "contact": {
+      "name": "Jane Dodo"
+      "email": "jane@example.org"
+    },
+    "contact": {
+      "name": "Jane Dodo"
+      "email": "jane@example.org"
+    }
+  }
+}
+
+```
+
+### 2. Apply for the Zero Badge
+
+In order to do so, you can either make a curl request to the [api]() or select
+the 'Apply For Badge' tab in the [graphql-playground]() and enter your input
+params in the box in the bottom left corner:
+
+```json
+
+{
+  "input":  {
+    "valueCaseId": "88c7a930-3181-11ea-9858-b312ce22102d",
+    "domainName": "https://example.org"
+  }
+}
+
+```
+
 
 ## Contributors
 
@@ -45,6 +89,7 @@ internet and the ways we are going to govern it.
 
 If that's you, don't hesitate to contact us. You are welcome!
 
+
 ## Maintainers
 
 [Jan Hein Hoogstad](https://github.com/yeehaa123): Concept development, system architecture,
@@ -52,7 +97,7 @@ and backend development
 
 [Alain Otjens](https://github.com/alain0): UI/UX design and frontend development
 
-[Sander van der Waal](https://github.com/sandervdwaal): community management
+[Leonieke Verhoog](...): community management
 
 ## Contributing
 
