@@ -47,11 +47,11 @@ and enter your input params in the box in the bottom left corner:
     "name": "CoolPublicOrg",
     "domainName": "https://example.org",
     "contact": {
-      "name": "Jane Dodo"
+      "name": "Jane Dodo",
       "email": "jane@example.org"
     },
     "contact": {
-      "name": "Jane Dodo"
+      "name": "Jane Dodo",
       "email": "jane@example.org"
     }
   }
