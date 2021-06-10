@@ -5,7 +5,9 @@
 Public Badges are an evidence-based certification system for value driven
 internet product and organization. As part of the
 [PublicSpaces](https://publicspaces.net) initiative, our aim is to (re)establish
-trust relations, between citizens, organizations, and governments.
+trust relations, between citizens, organizations, and governments. 
+We are working together to reclaim the internet as a force for the common good 
+and advocating a new internet that strengthens the public domain.
 
 By combining [Open Badges](https://openbadges.org/) with automated unit tests,
 we make the ethical values of organizations, products, projects, and protocols
@@ -13,82 +15,50 @@ visbile as well as measurable.
 
 The goal of the Public Badges is not to come up with an one size fits all value
 system for the internet. Instead, it is a tool to facilitate discussion about
-the choice of values within a pluralist landscape.
+the choice of values within a pluralist landscape and help organisations to make
+the transition to a more healthy digital ecosystem. 
 
 Public Badges are currently available to members of the PublicSpaces coalition.
 If you work for a public institution, and you are interested in joining, please
-email us at <info@publicspaces.net>.
+get in touch with the [PublicSpaces program manager](https://github.com/leoloves) or send us an e-mail at <info@publicspaces.net>.
 
 
 ## Zero Badge
 
-At the moment, there is only one badge available: the so-called Zero Badge. The Zero Badge serves as a public outing of support to the ideals enshrined in the PublicSpaces manifesto. The badge will be an image that partners can put on their website that shows their support for the manifesto. Behind the scenes, an automated technical validation will take place so that a badge cannot be displayed on a website unauthorised. 
+At the moment, there is only one badge available: the so-called Zero Badge. 
+The Zero Badge serves as a public outing of support to the ideals enshrined in the PublicSpaces [manifesto](https://publicspaces.net/manifesto/). 
+The badge is a clickable image that partners can put on their website that shows their support for the manifesto. 
+After clicking on it, the badge will open and reveal the PublicSpaces values and the intentions of the organisation itself to work according the PublicSpaces values. 
 
-Currently organisations carrying the badge are [VPRO](https://www.vpro.nl), [Waag](https://waag.org) and [Eye Filmmuseum](https://www.eyefilm.nl/en). 
-We hope to add the Zero Badge to the websites of multiple PublicSpaces partners in 2021. 
+The following text will appear: 
+
+<strong>ZeroBadge</strong> 
+This badge is awarded to organizations that publicly display their commitment to the values of the PublicSpaces manifesto on their website.
+<ul>
+  <li>Waag is listed in the PublicSpaces Registry</li>
+  <li>Zero Badge is publicly visible on Waag's website</li>
+  <li>Waag's website links to the PublicSpaces Manifesto</li>
+  
+</ul>
+
+
+Behind the scenes, an automated technical validation will take place so that a badge cannot be displayed on a website unauthorised. 
+
+Current organisations carrying the badge are [VPRO](https://www.vpro.nl), [Waag](https://waag.org) and [Eye Filmmuseum](https://www.eyefilm.nl/en). 
+Our goal is to add the Zero Badge to the websites of multiple other PublicSpaces partners in 2021. 
 
 The Zero Badge is only open to current members of the [PublicSpaces
 Coalition](https://publicspaces.net/the-coalition/), but we aim to broaden our
-scope and reach. Follow this link to [become a partner of the PublicSpaces coalition.](https://publicspaces.net/join-us/) 
+scope and reach. [Become a partner of the PublicSpaces coalition.](https://publicspaces.net/join-us/) 
 
 The current state and envisioned roadmap of the project can be found
 [HERE](./state_of_the_project.md)
 
-PublicSpaces members have to get in touch with [PublicSpaces program manager](https://github.com/leoloves) in order to apply for the app. 
-The program manager will go through the following steps:
-
-### 1. Apply for the PublicSpaces Registry
-
-In order to do so, you can either make a curl request to the
-[api](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/graphql) or
-select the 'Register Organization' tab in the
-[graphql-playground](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/playground)
-and enter your input params in the box in the bottom left corner:
-
-```json
-
-{
-  "input":  {
-    "name": "CoolPublicOrg",
-    "domainName": "https://example.org",
-    "contact": {
-      "name": "Jane Dodo",
-      "email": "jane@example.org"
-    },
-    "contact": {
-      "name": "Jane Dodo",
-      "email": "jane@example.org"
-    }
-  }
-}
-
-```
-
-### 2. Apply for the Zero Badge
-
-In order to do so, you can either make a curl request to the
-[api](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/graphql) or
-select the 'Apply For Badge' tab in the
-[graphql-playground](https://2cnf4k566a.execute-api.eu-west-1.amazonaws.com/dev/playground)
-and enter your input params in the box in the bottom left corner:
-
-```json
-
-{
-  "input":  {
-    "valueCaseId": "88c7a930-3181-11ea-9858-b312ce22102d",
-    "domainName": "https://example.org"
-  }
-}
-
-```
-
-### 3. Put The Frontend Component on your Website
-Describe steps on how to put the Frontend Component on your website. 
+PublicSpaces members have to get in touch with [PublicSpaces program manager](https://github.com/leoloves) in order to apply for the app and get their website authorised. 
 
 ## Contributors
 
-This project is in a very early stage. Currently, we are not actively looking for
+This project is in an early stage. Currently, we are not actively looking for
 contributors, but that does not mean you are not welcome to reach out to us. It
 may take us a bit to be ready to onboard you, but at least we can start a
 conversation and get to know each other.
