@@ -1,5 +1,6 @@
-Congratulations, {{displayName}}, your organisation has been approved by the PublicSpaces communitymanager. 
-You are now allowed to show the PublicSpaces Zero Badge at your website. 
+Congratulations, {{displayName}}, 
+your organisation membership has been reviewed by the PublicSpaces communitymanager and your organisation has been approved. 
+You are now allowed to place the PublicSpaces Zero Badge at your website. 
 
 Here is what you have to do: 
 
